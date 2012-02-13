@@ -3,9 +3,13 @@ This is a <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</
 ## Get started
 
 1. Drag and drop the 4 files related to the parser:
+
 	-RSSParser.h
+
 	-RSSParser.m
+
 	-RSSItem.h
+
 	-RSSItem.m
 	
 2. You also need to add <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> to your project
@@ -64,7 +68,9 @@ This parser is fully optimised
 ## TODO
 
 -Testing
+
 -Documentation
+
 -Feed header data
 
 ## License
