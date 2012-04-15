@@ -1,4 +1,4 @@
-This is a <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> and block based RSS parser.
+This is a simple <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> and block based RSS parser.
 
 ## Get started
 
@@ -63,7 +63,7 @@ This parser is optimised to work with a Wordpress feed and some informations lik
 
 The sample code use a Tumblr feed provided for my personal blog. The content is empty but the full body of the article is present in the itemDescription (description in the feed) of the feed.
 
-This parser is fully optimised 
+This parser is mostly optimised to use with a wordpress feed.
 
 ## TODO
 
