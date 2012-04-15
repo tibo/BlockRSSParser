@@ -21,4 +21,10 @@
 @property (retain,nonatomic) NSString *author;
 @property (retain,nonatomic) NSString *guid;
 
+- (NSArray *)urlsFromContent;
+- (NSArray *)urlsFromItemDescription;
+
+- (NSArray *)imagesURLFromContent;
+- (NSArray *)imagesURLFromItemDescription;
+
 @end
