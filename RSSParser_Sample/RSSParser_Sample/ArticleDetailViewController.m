@@ -61,23 +61,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
     return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    NSLog(@"%@",NSStringFromSelector(_cmd));    
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    NSLog(@"%@",NSStringFromSelector(_cmd));
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    NSLog(@"%@",NSStringFromSelector(_cmd));
 }
 
 @end
