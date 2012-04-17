@@ -7,9 +7,14 @@
 //
 
 #import "ArticlesListeTableViewController.h"
+
 #import "RSSParser.h"
 #import "RSSItem.h"
+
 #import "ArticleDetailViewController.h"
+
+#import "UIImageView+AFNetworking.h"
+
 
 @implementation ArticlesListeTableViewController
 @synthesize dataSource;
@@ -112,16 +117,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    RSSItem *item = [dataSource objectAtIndex:indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:item.title];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:item.title] autorelease];
     }
     
     // Configure the cell...
-    cell.textLabel.text = [[dataSource objectAtIndex:indexPath.row] title];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.textLabel.text = [item title];
+    
+    if ([[item imagesFromItemDescription] count]>0) {
+        [cell.imageView setImageWithURL:[NSURL URLWithString:[item.imagesFromItemDescription objectAtIndex:0]] 
+                       placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        
+    }
     
     return cell;
 }
