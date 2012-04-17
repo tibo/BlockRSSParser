@@ -116,8 +116,15 @@
         
         if ([elementName isEqualToString:@"pubDate"]) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+            NSLocale *local = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
+            [formatter setLocale:local];
+            [local release];
+            
             [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
+            
             [currentItem setPubDate:[formatter dateFromString:tmpString]];
+            
             [formatter release];
         }
 
