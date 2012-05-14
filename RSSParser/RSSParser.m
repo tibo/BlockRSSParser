@@ -62,7 +62,9 @@
 + (NSSet *)defaultAcceptableContentTypes {
     return [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", nil];
 }
-
++ (NSSet *)acceptableContentTypes {
+    return [self defaultAcceptableContentTypes];
+}
 #pragma mark -
 
 #pragma mark NSXMLParser delegate
