@@ -75,7 +75,7 @@
     if ([elementName isEqualToString:@"item"]) {
         currentItem = [[RSSItem alloc] init];
     }
-    
+    attributes = attributeDict;
     tmpString = [[NSMutableString alloc] init];
     
 }
@@ -136,6 +136,9 @@
         
         if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
+        }
+        if ([elementName isEqualToString:@"media:thumbnail"]) {
+            [currentItem setThumbnail:[attributes objectForKey:@"url"]];
         }
         
         [tmpString release];tmpString =nil;
