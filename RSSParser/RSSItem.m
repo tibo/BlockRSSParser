@@ -16,7 +16,7 @@
 
 @implementation RSSItem
 
-@synthesize title,itemDescripition,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid;
+@synthesize title,itemDescripition,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid,thumbnail;
 
 - (void)dealloc {
     [title release];title = nil;
@@ -29,6 +29,7 @@
     [pubDate release];pubDate = nil;
     [author release]; author = nil;
     [guid release]; guid = nil;
+    [thumbnail release]; thumbnail = nil;
     [super dealloc];
 }
 

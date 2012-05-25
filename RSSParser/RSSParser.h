@@ -14,6 +14,7 @@
     RSSItem *currentItem;
     NSMutableArray *items;
     NSMutableString *tmpString;
+    NSDictionary *attributes;
     void (^block)(NSArray *feedItems);
 }
 
