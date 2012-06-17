@@ -93,7 +93,7 @@
         }
         
         if ([elementName isEqualToString:@"description"]) {
-            [currentItem setItemDescripition:tmpString];
+            [currentItem setItemDescription:tmpString];
         }
         
         if ([elementName isEqualToString:@"content:encoded"]) {

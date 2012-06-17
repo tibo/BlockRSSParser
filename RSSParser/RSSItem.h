@@ -11,7 +11,7 @@
 @interface RSSItem : NSObject
 
 @property (retain,nonatomic) NSString *title;
-@property (retain,nonatomic) NSString *itemDescripition;
+@property (retain,nonatomic) NSString *itemDescription;
 @property (retain,nonatomic) NSString *content;
 @property (retain,nonatomic) NSURL *link;
 @property (retain,nonatomic) NSURL *commentsLink;

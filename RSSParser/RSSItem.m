@@ -16,11 +16,11 @@
 
 @implementation RSSItem
 
-@synthesize title,itemDescripition,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid;
+@synthesize title,itemDescription,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid;
 
 - (void)dealloc {
     [title release];title = nil;
-    [itemDescripition release];itemDescripition = nil;
+    [itemDescription release];itemDescription = nil;
     [content release]; content = nil;
     [link release];link = nil;
     [commentsLink release];commentsLink = nil;
@@ -34,8 +34,8 @@
 
 -(NSArray *)imagesFromItemDescription
 {
-    if (self.itemDescripition) {
-        return [self imagesFromHTMLString:self.itemDescripition];
+    if (self.itemDescription) {
+        return [self imagesFromHTMLString:self.itemDescription];
     }
     
     return nil;

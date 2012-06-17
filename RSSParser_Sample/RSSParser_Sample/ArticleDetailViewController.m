@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setTitle:item.title];
-    [articleWebView loadHTMLString:item.itemDescripition baseURL:nil];
+    [articleWebView loadHTMLString:item.itemDescription baseURL:nil];
 }
 
 - (void)viewDidUnload
