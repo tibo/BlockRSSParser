@@ -76,6 +76,12 @@
         currentItem = [[RSSItem alloc] init];
     }
     
+	if ([elementName isEqualToString:@"enclosure"]) {
+		[currentItem setPodcastFileUrl:[attributeDict objectForKey:@"url"]];
+		[currentItem setPodcastFileType:[attributeDict objectForKey:@"type"]];
+		[currentItem setPodcastFileLength:[attributeDict objectForKey:@"length"]];
+	}
+	
     tmpString = [[NSMutableString alloc] init];
     
 }
@@ -136,6 +142,10 @@
         
         if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
+        }
+		
+		if ([elementName isEqualToString:@"itunes:duration"]) {
+            [currentItem setPodcastItunesDuration:tmpString];
         }
         
         [tmpString release];tmpString =nil;
