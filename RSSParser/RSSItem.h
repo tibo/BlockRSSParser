@@ -20,6 +20,10 @@
 @property (retain,nonatomic) NSDate *pubDate;
 @property (retain,nonatomic) NSString *author;
 @property (retain,nonatomic) NSString *guid;
+@property (retain,nonatomic) NSString *podcastFileUrl;
+@property (retain,nonatomic) NSString *podcastFileType;
+@property (retain,nonatomic) NSString *podcastFileLength;
+@property (retain,nonatomic) NSString *podcastItunesDuration;
 
 -(NSArray *)imagesFromItemDescription;
 -(NSArray *)imagesFromContent;

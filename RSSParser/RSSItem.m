@@ -16,7 +16,7 @@
 
 @implementation RSSItem
 
-@synthesize title,itemDescription,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid;
+@synthesize title,itemDescription,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid, podcastFileUrl, podcastFileType, podcastFileLength, podcastItunesDuration;
 
 - (void)dealloc {
     [title release];title = nil;
@@ -29,6 +29,10 @@
     [pubDate release];pubDate = nil;
     [author release]; author = nil;
     [guid release]; guid = nil;
+	[podcastFileUrl release]; podcastFileUrl = nil;
+	[podcastFileType release]; podcastFileType = nil;
+	[podcastFileLength release]; podcastFileLength = nil;
+	[podcastItunesDuration release]; podcastItunesDuration = nil;
     [super dealloc];
 }
 
