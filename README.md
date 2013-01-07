@@ -2,6 +2,14 @@ This is a simple <a href="https://github.com/AFNetworking/AFNetworking/">AFNetwo
 
 ## Get started
 
+Use Cocoapods! just add this line to you Podfile: 
+
+```
+pod 'BlockRSSParser', '~> 1.0'
+```
+
+If you don't want to use Cocoapods, follow theses instructions for a manual install :
+
 1. Drag and drop the 4 files related to the parser:
 
 	-RSSParser.h
