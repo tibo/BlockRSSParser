@@ -19,10 +19,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 #pragma mark -
 
 #pragma mark parser
@@ -33,7 +29,6 @@
 {
     RSSParser *parser = [[RSSParser alloc] init];
     [parser parseRSSFeedForRequest:urlRequest success:success failure:failure];
-    [parser release];
 }
 
 
@@ -84,7 +79,6 @@
 {    
     if ([elementName isEqualToString:@"item"]) {
         [items addObject:currentItem];
-        [currentItem release]; currentItem=nil;
     }
     if (currentItem != nil && tmpString != nil) {
         
@@ -121,13 +115,10 @@
 
             NSLocale *local = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
             [formatter setLocale:local];
-            [local release];
-            
+          
             [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
             
             [currentItem setPubDate:[formatter dateFromString:tmpString]];
-            
-            [formatter release];
         }
 
         if ([elementName isEqualToString:@"dc:creator"]) {
@@ -137,13 +128,10 @@
         if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
         }
-        
-        [tmpString release];tmpString =nil;
     }
     
     if ([elementName isEqualToString:@"rss"]) {
         block(items);
-        [block release];
     }
     
 }

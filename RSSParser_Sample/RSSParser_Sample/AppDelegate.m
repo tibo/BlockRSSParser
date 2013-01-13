@@ -13,15 +13,9 @@
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     ArticlesListeTableViewController *articleVC = [[ArticlesListeTableViewController alloc] initWithNibName:nil bundle:nil];
@@ -29,9 +23,7 @@
     UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:articleVC];
     
     [self.window setRootViewController:navCtrl];
-    
-    [navCtrl release];
-    [articleVC release];
+  
 
     [self.window makeKeyAndVisible];
     return YES;

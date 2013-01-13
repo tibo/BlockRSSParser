@@ -21,7 +21,6 @@
 		118543DF14E9ACA0001761CB /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543CC14E9ACA0001761CB /* AFHTTPRequestOperation.m */; };
 		118543E014E9ACA0001761CB /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543CE14E9ACA0001761CB /* AFImageRequestOperation.m */; };
 		118543E114E9ACA0001761CB /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543D014E9ACA0001761CB /* AFJSONRequestOperation.m */; };
-		118543E214E9ACA0001761CB /* AFJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543D214E9ACA0001761CB /* AFJSONUtilities.m */; };
 		118543E314E9ACA0001761CB /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543D414E9ACA0001761CB /* AFNetworkActivityIndicatorManager.m */; };
 		118543E414E9ACA0001761CB /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543D714E9ACA0001761CB /* AFPropertyListRequestOperation.m */; };
 		118543E514E9ACA0001761CB /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543D914E9ACA0001761CB /* AFURLConnectionOperation.m */; };
@@ -31,6 +30,8 @@
 		118543F014E9ACD2001761CB /* ArticlesListeTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 118543EE14E9ACD2001761CB /* ArticlesListeTableViewController.xib */; };
 		118543F414E9AFE0001761CB /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543F214E9AFE0001761CB /* ArticleDetailViewController.m */; };
 		118543F514E9AFE0001761CB /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 118543F314E9AFE0001761CB /* ArticleDetailViewController.xib */; };
+		DA0619AD16A3127300DB4BB8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */; };
+		DA0619AF16A312E200DB4BB8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,8 +62,6 @@
 		118543CE14E9ACA0001761CB /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
 		118543CF14E9ACA0001761CB /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
 		118543D014E9ACA0001761CB /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
-		118543D114E9ACA0001761CB /* AFJSONUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONUtilities.h; sourceTree = "<group>"; };
-		118543D214E9ACA0001761CB /* AFJSONUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONUtilities.m; sourceTree = "<group>"; };
 		118543D314E9ACA0001761CB /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		118543D414E9ACA0001761CB /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		118543D514E9ACA0001761CB /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -80,6 +79,8 @@
 		118543F114E9AFE0001761CB /* ArticleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleDetailViewController.h; sourceTree = "<group>"; };
 		118543F214E9AFE0001761CB /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
 		118543F314E9AFE0001761CB /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleDetailViewController.xib; sourceTree = "<group>"; };
+		DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0619AF16A312E200DB4BB8 /* MobileCoreServices.framework in Frameworks */,
+				DA0619AD16A3127300DB4BB8 /* SystemConfiguration.framework in Frameworks */,
 				110A8A8814E9A30C0013AC07 /* UIKit.framework in Frameworks */,
 				110A8A8A14E9A30C0013AC07 /* Foundation.framework in Frameworks */,
 				110A8A8C14E9A30C0013AC07 /* CoreGraphics.framework in Frameworks */,
@@ -99,6 +102,8 @@
 		110A8A7814E9A30A0013AC07 = {
 			isa = PBXGroup;
 			children = (
+				DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */,
+				DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */,
 				1133748E169ACF5A003E2CE9 /* README.md */,
 				11337496169AD3AF003E2CE9 /* BlockRSSParser.podspec */,
 				11337490169ACF5F003E2CE9 /* LICENSE */,
@@ -189,8 +194,6 @@
 				118543CE14E9ACA0001761CB /* AFImageRequestOperation.m */,
 				118543CF14E9ACA0001761CB /* AFJSONRequestOperation.h */,
 				118543D014E9ACA0001761CB /* AFJSONRequestOperation.m */,
-				118543D114E9ACA0001761CB /* AFJSONUtilities.h */,
-				118543D214E9ACA0001761CB /* AFJSONUtilities.m */,
 				118543D314E9ACA0001761CB /* AFNetworkActivityIndicatorManager.h */,
 				118543D414E9ACA0001761CB /* AFNetworkActivityIndicatorManager.m */,
 				118543D514E9ACA0001761CB /* AFNetworking.h */,
@@ -280,7 +283,6 @@
 				118543DF14E9ACA0001761CB /* AFHTTPRequestOperation.m in Sources */,
 				118543E014E9ACA0001761CB /* AFImageRequestOperation.m in Sources */,
 				118543E114E9ACA0001761CB /* AFJSONRequestOperation.m in Sources */,
-				118543E214E9ACA0001761CB /* AFJSONUtilities.m in Sources */,
 				118543E314E9ACA0001761CB /* AFNetworkActivityIndicatorManager.m in Sources */,
 				118543E414E9ACA0001761CB /* AFPropertyListRequestOperation.m in Sources */,
 				118543E514E9ACA0001761CB /* AFURLConnectionOperation.m in Sources */,
@@ -310,6 +312,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -334,6 +337,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

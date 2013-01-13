@@ -28,11 +28,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [dataSource release];
-    [super dealloc];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -64,8 +59,6 @@
         [self setTitle:@"Error"];
         NSLog(@"Error: %@",error);
     }];
-    
-    [req release];
 }
 
 - (void)viewDidUnload
@@ -121,7 +114,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:item.title];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:item.title] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:item.title];
     }
     
     // Configure the cell...
