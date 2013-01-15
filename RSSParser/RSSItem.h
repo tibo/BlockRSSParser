@@ -10,16 +10,16 @@
 
 @interface RSSItem : NSObject
 
-@property (retain,nonatomic) NSString *title;
-@property (retain,nonatomic) NSString *itemDescription;
-@property (retain,nonatomic) NSString *content;
-@property (retain,nonatomic) NSURL *link;
-@property (retain,nonatomic) NSURL *commentsLink;
-@property (retain,nonatomic) NSURL *commentsFeed;
-@property (retain,nonatomic) NSNumber *commentsCount;
-@property (retain,nonatomic) NSDate *pubDate;
-@property (retain,nonatomic) NSString *author;
-@property (retain,nonatomic) NSString *guid;
+@property (strong,nonatomic) NSString *title;
+@property (strong,nonatomic) NSString *itemDescription;
+@property (strong,nonatomic) NSString *content;
+@property (strong,nonatomic) NSURL *link;
+@property (strong,nonatomic) NSURL *commentsLink;
+@property (strong,nonatomic) NSURL *commentsFeed;
+@property (strong,nonatomic) NSNumber *commentsCount;
+@property (strong,nonatomic) NSDate *pubDate;
+@property (strong,nonatomic) NSString *author;
+@property (strong,nonatomic) NSString *guid;
 
 -(NSArray *)imagesFromItemDescription;
 -(NSArray *)imagesFromContent;
