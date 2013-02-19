@@ -18,20 +18,6 @@
 
 @synthesize title,itemDescription,content,link,commentsLink,commentsFeed,commentsCount,pubDate,author,guid;
 
-- (void)dealloc {
-    [title release];title = nil;
-    [itemDescription release];itemDescription = nil;
-    [content release]; content = nil;
-    [link release];link = nil;
-    [commentsLink release];commentsLink = nil;
-    [commentsFeed release];commentsFeed = nil;
-    [commentsCount release];commentsCount = nil;
-    [pubDate release];pubDate = nil;
-    [author release]; author = nil;
-    [guid release]; guid = nil;
-    [super dealloc];
-}
-
 -(NSArray *)imagesFromItemDescription
 {
     if (self.itemDescription) {
