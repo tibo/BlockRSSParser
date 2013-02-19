@@ -1,11 +1,16 @@
 This is a simple <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> and block based RSS parser.
 
+## Memory management
+
+BlockRSSParser now require ARC.
+If you need to use it without ARC, please use the 1.0 tag.
+
 ## Get started
 
 Use Cocoapods! just add this line to you Podfile: 
 
 ```
-pod 'BlockRSSParser', '~> 1.0'
+pod 'BlockRSSParser', '~> 1.1'
 ```
 
 If you don't want to use Cocoapods, follow theses instructions for a manual install :
