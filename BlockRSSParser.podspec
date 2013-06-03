@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Classes', 'RSSParser/*.{h,m}'
 
-  s.dependency 'AFNetworking', '~> 1.2.0'
+  s.dependency 'AFNetworking', '~> 1.3.0'
 end
