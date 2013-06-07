@@ -8,6 +8,16 @@
 
 #import "RSSParser.h"
 
+static dispatch_queue_t rssparser_success_callback_queue() {
+    static dispatch_queue_t parser_success_callback_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        parser_success_callback_queue = dispatch_queue_create("rssparser.success_callback.processing", DISPATCH_QUEUE_CONCURRENT);
+    });
+
+    return parser_success_callback_queue;
+}
+
 @implementation RSSParser
 
 #pragma mark lifecycle
@@ -43,10 +53,13 @@
         [XMLParser setDelegate:self];
         [XMLParser parse];
         
-        
+
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParse) {
         failure(error);
     }];
+
+    [operation setSuccessCallbackQueue:rssparser_success_callback_queue()];
+
     [operation start];
 }
 
