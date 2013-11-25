@@ -24,3 +24,6 @@ xcuserdata
 # VendorKit
 Vendor
 *.vendorbackup*
+
+# cocoapods
+RSSParser_Sample/Pods/*
