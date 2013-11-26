@@ -8,15 +8,8 @@
 
 #import "RSSParser.h"
 
-static dispatch_queue_t rssparser_success_callback_queue() {
-    static dispatch_queue_t parser_success_callback_queue;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        parser_success_callback_queue = dispatch_queue_create("rssparser.success_callback.processing", DISPATCH_QUEUE_CONCURRENT);
-    });
-
-    return parser_success_callback_queue;
-}
+#import "AFHTTPRequestOperation.h"
+#import "AFURLResponseSerialization.h"
 
 @implementation RSSParser
 
@@ -49,32 +42,24 @@ static dispatch_queue_t rssparser_success_callback_queue() {
     
     block = [success copy];
     
-    AFXMLRequestOperation *operation = [RSSParser XMLParserRequestOperationWithRequest:urlRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
-        [XMLParser setDelegate:self];
-        [XMLParser parse];
-        
-
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParse) {
-        failure(error);
-    }];
-
-    [operation setSuccessCallbackQueue:rssparser_success_callback_queue()];
-
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+    
+    operation.responseSerializer = [[AFXMLParserResponseSerializer alloc] init];
+    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [(NSXMLParser *)responseObject setDelegate:self];
+        [(NSXMLParser *)responseObject parse];
+    }
+                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                         failure(error);
+                                     }];
+    
     [operation start];
+    
 }
 
 #pragma mark -
-
-#pragma mark AFNetworking AFXMLRequestOperation acceptable Content-Type overwriting
-
-+ (NSSet *)defaultAcceptableContentTypes {
-    return [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
-}
-+ (NSSet *)acceptableContentTypes {
-    return [self defaultAcceptableContentTypes];
-}
-#pragma mark -
-
 #pragma mark NSXMLParser delegate
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
