@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BlockRSSParser"
-  s.version      = "1.1"
+  s.version      = "2.0"
   s.summary      = "AFNetworkingXMLRequestOperation based RSS parser."
   s.homepage     = "https://github.com/tiboll/BlockRSSParser"
 
@@ -8,14 +8,14 @@ Pod::Spec.new do |s|
 
   s.author       = { "Thibaut LE LEVIER" => "thibaut@lelevier.fr" }
 
-  s.source       = { :git => "https://github.com/tiboll/BlockRSSParser.git", :tag => "1.1" }
+  s.source       = { :git => "https://github.com/tiboll/BlockRSSParser.git", :tag => "2.0" }
 
   s.requires_arc = true
 
   s.platform     = :ios
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '6.0'
 
   s.source_files = 'Classes', 'RSSParser/*.{h,m}'
 
-  s.dependency 'AFNetworking', '~> 1.3.0'
+  s.dependency 'AFNetworking', '~> 2.0.3'
 end
