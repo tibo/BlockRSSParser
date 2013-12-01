@@ -87,9 +87,13 @@ The sample code use a Tumblr feed provided for my personal blog. The content is 
 
 This parser is mostly optimised to use with a wordpress feed.
 
+## Continuous integration
+
+[![Build Status](https://travis-ci.org/tiboll/BlockRSSParser.png?branch=master)](https://travis-ci.org/tiboll/BlockRSSParser)
+
 ## TODO
 
--Testing
+-Testing => In Progress
 
 -Documentation
 
