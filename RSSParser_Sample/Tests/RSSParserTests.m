@@ -40,7 +40,6 @@ describe(@"RSSParser", ^{
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
         [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
         
     });
@@ -59,7 +58,6 @@ describe(@"RSSParser", ^{
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
         [[expectFutureValue(items) shouldEventually] have:20];
         
     });
@@ -68,7 +66,6 @@ describe(@"RSSParser", ^{
         NSURL *atomMockURL = [NSURL fileURLWithPath:atomMock];
         
         __block NSArray *items = nil;
-        __block NSString *testItemTitle = nil;
         __block NSString *testItemContent = nil;
         
         NSURLRequest *request = [NSURLRequest requestWithURL:atomMockURL];
@@ -76,42 +73,31 @@ describe(@"RSSParser", ^{
         [RSSParser parseRSSFeedForRequest:request
                                   success:^(NSArray *feedItems) {
                                       items = [NSArray arrayWithArray:feedItems];
-                                      testItemTitle = [[feedItems firstObject] title];
                                       testItemContent = [[feedItems firstObject] content];
                                   }
                                   failure:^(NSError *error) {
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
-        [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
-        
-        [[expectFutureValue(testItemTitle) shouldEventually] containString:@"octopress" options:NSCaseInsensitiveSearch];
         [[expectFutureValue(testItemContent) shouldEventually] containString:@"octopress" options:NSCaseInsensitiveSearch];
         
     });
     
-    it(@"last item title and content in atom feed talk about Mac and TimeMachine", ^{
+    it(@"last item in atom feed talk about rimeMachine", ^{
         
         NSURL *atomMockURL = [NSURL fileURLWithPath:atomMock];
         
         __block NSArray *items = nil;
-        __block NSString *testItemTitle = nil;
         __block NSString *testItemContent = nil;
         
         [RSSParser parseRSSFeedForRequest:[NSURLRequest requestWithURL:atomMockURL]
                                   success:^(NSArray *feedItems) {
                                       items = [NSArray arrayWithArray:feedItems];
-                                      testItemTitle = [[feedItems lastObject] title];
                                       testItemContent = [[feedItems lastObject] content];
                                   }
                                   failure:^(NSError *error) {
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
-        [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
-        
-        [[expectFutureValue(testItemTitle) shouldEventually] containString:@"mac" options:NSCaseInsensitiveSearch];
         [[expectFutureValue(testItemContent) shouldEventually] containString:@"timeMachine" options:NSCaseInsensitiveSearch];
         
     });
@@ -131,7 +117,6 @@ describe(@"RSSParser", ^{
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
         [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
         
     });
@@ -150,7 +135,6 @@ describe(@"RSSParser", ^{
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
         [[expectFutureValue(items) shouldEventually] have:5];
         
     });
@@ -160,23 +144,17 @@ describe(@"RSSParser", ^{
         NSURL *rssWordpressMockURL = [NSURL fileURLWithPath:rssWordpressMock];
         
         __block NSArray *items = nil;
-        __block NSString *testItemTitle = nil;
         __block NSString *testItemContent = nil;
         
         [RSSParser parseRSSFeedForRequest:[NSURLRequest requestWithURL:rssWordpressMockURL]
                                   success:^(NSArray *feedItems) {
                                       items = [NSArray arrayWithArray:feedItems];
-                                      testItemTitle = [[feedItems firstObject] title];
                                       testItemContent = [[feedItems firstObject] content];
                                   }
                                   failure:^(NSError *error) {
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
-        [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
-        
-        [[expectFutureValue(testItemTitle) shouldEventually] containString:@"investing" options:NSCaseInsensitiveSearch];
         [[expectFutureValue(testItemContent) shouldEventually] containString:@"investing" options:NSCaseInsensitiveSearch];
         
     });
@@ -186,23 +164,17 @@ describe(@"RSSParser", ^{
         NSURL *rssWordpressMockURL = [NSURL fileURLWithPath:rssWordpressMock];
         
         __block NSArray *items = nil;
-        __block NSString *testItemTitle = nil;
         __block NSString *testItemContent = nil;
         
         [RSSParser parseRSSFeedForRequest:[NSURLRequest requestWithURL:rssWordpressMockURL]
                                   success:^(NSArray *feedItems) {
                                       items = [NSArray arrayWithArray:feedItems];
-                                      testItemTitle = [[feedItems lastObject] title];
                                       testItemContent = [[feedItems lastObject] content];
                                   }
                                   failure:^(NSError *error) {
                                       
                                   }];
         
-        [[expectFutureValue(items) shouldEventually] beNonNil];
-        [[expectFutureValue(items) shouldEventually] haveAtLeast:1];
-        
-        [[expectFutureValue(testItemTitle) shouldEventually] containString:@"spotify" options:NSCaseInsensitiveSearch];
         [[expectFutureValue(testItemContent) shouldEventually] containString:@"spotify" options:NSCaseInsensitiveSearch];
     });
     
