@@ -16,7 +16,7 @@ Please use the 1.1 version (Podspec and git tag)
 Use Cocoapods! just add this line to you Podfile: 
 
 ```
-pod 'BlockRSSParser', '~> 2.0'
+pod 'BlockRSSParser', '~> 2.1'
 ```
 
 If you don't want to use Cocoapods, follow theses instructions for a manual install :
