@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+<channel>
+	<title>Rude Baguette</title>
+	<atom:link href="http://www.rudebaguette.com/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.rudebaguette.com</link>
+	<description>France&#039;s Startup Blog</description>
+	<lastBuildDate>Tue, 26 Nov 2013 17:42:51 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	
+		<item>
+		<title>RudeVC: Investing in competing firms</title>
+		<link>http://www.rudebaguette.com/2013/11/26/rudevc-investing-in-competing-firms/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=rudevc-investing-in-competing-firms</link>
+		<comments>http://www.rudebaguette.com/2013/11/26/rudevc-investing-in-competing-firms/#comments</comments>
+		<pubDate>Tue, 26 Nov 2013 14:15:05 +0000</pubDate>
+		<dc:creator>Mark Bivens</dc:creator>
+				<category><![CDATA[`RUDE VC]]></category>
+		<category><![CDATA[conflicts of interest]]></category>
+
+		<guid isPermaLink="false">http://www.rudebaguette.com/?p=21489</guid>
+		<description><![CDATA[The other day my partner received a fundraising teaser from an intermediary which contained a section on the project&#8217;s competitive landscape. The competition mapping followed the common quadrant format, yet to my partner&#8217;s astonishment, included one of our existing portfolio companies smack in the sweet spot of this project&#8217;s competition....]]></description>
+				<content:encoded><![CDATA[<p style="text-align: justify;"><img class="alignright size-full wp-image-21576" alt="competitors" src="http://www.rudebaguette.com/assets/competitors1.jpg" width="400" height="300" />The other day my partner received a fundraising teaser from an intermediary which contained a section on the project&#8217;s competitive landscape. The competition mapping followed the common quadrant format, yet to my partner&#8217;s astonishment, included one of our existing portfolio companies smack in the sweet spot of this project&#8217;s competition.</p>
+<p style="text-align: justify;">To solicit us for fundraising in a direct competitor of one of our portfolio companies simply points to an intermediary that didn&#8217;t do his homework. While I submit this is a tremendous disservice to his client and I have a big beef with this, that&#8217;s a topic I&#8217;ll address another time.</p>
+<p style="text-align: justify;">This incident however also started me thinking about a concern I&#8217;ve encountered from time to time from entrepreneurs about whether we would ever invest in competing businesses. To be perfectly clear, my policy is to not invest in competing companies. Not only do I consider it dishonorable, but it wouldn&#8217;t make good business sense for me either.</p>
+<p style="text-align: justify;">I&#8217;m in the VC business for the long haul (and in my mind I&#8217;m still young!). I aspire to attain strong performance on multiple generations of investment funds. I can project that some of my best future deals will be second, third, or fourth ventures launched by entrepreneurs already in my network today. So garnering a reputation for espousing conflict of interest would eventually come back to bite me.</p>
+<p style="text-align: justify;">Furthermore, I really see my primary role as a VC to work in service to my portfolio companies. I estimate that I spend almost a day per week on average per portfolio company working directly or indirectly for them. Dividing my bandwidth between two direct competitors would undermine the very service I committed to provide as an investor.</p>
+<p style="text-align: justify;">Of course, the pace of change brought by technology results in the continual scrapping and re-drawing of market segments and product categories. Moreover, especially in early-stage technology companies, the best firms will likely pivot multiple times during their progression. This means that two unrelated companies today could become competitors in the future. So how do I handle that ?</p>
+<p style="text-align: justify;">Well, first I employ common sense and listen to my gut. Generally I&#8217;m pretty focused on investing around particular themes, so I should have a certain degree of context to anticipate some chance of convergence. This method is admittedly far from foolproof; my judgment can easily be wrong. So I also defer to the judgment of the management teams of the respective companies. If I&#8217;m interested in a new investment opportunity that may later drift into the space of one of my existing portfolio companies, I will consult my portfolio firm. If all lights are green and the new investment progresses, I&#8217;ll most likely even encourage a meeting between the firms to ensure everyone is comfortable before finalizing the deal. If there&#8217;s any lingering doubt, even if I&#8217;m convinced but my portfolio CEO is uncomfortable, I won&#8217;t proceed.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.rudebaguette.com/2013/11/26/rudevc-investing-in-competing-firms/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>500 Startups&#8217; Warmgun conference recap: we&#8217;re all designers</title>
+		<link>http://www.rudebaguette.com/2013/11/26/500-startups-warmgun-conference-recap-were-all-designers/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=500-startups-warmgun-conference-recap-were-all-designers</link>
+		<comments>http://www.rudebaguette.com/2013/11/26/500-startups-warmgun-conference-recap-were-all-designers/#comments</comments>
+		<pubDate>Tue, 26 Nov 2013 13:33:07 +0000</pubDate>
+		<dc:creator>Michael Ferranti</dc:creator>
+				<category><![CDATA[Design]]></category>
+		<category><![CDATA[design]]></category>
+		<category><![CDATA[UX]]></category>
+
+		<guid isPermaLink="false">http://www.rudebaguette.com/?p=21558</guid>
+		<description><![CDATA[The following is a guest post from Michael Ferranti, a marketer and product guy living and working in San Francisco, USA. You can follow him on Twitter @ferrantim where your tweets in English and français are welcome, or on his blog. For the last three years, a highlight of my year has been a...]]></description>
+				<content:encoded><![CDATA[<p style="text-align: center"><a href="http://www.rudebaguette.com/assets/warm-gun-badge.jpg"><img class="aligncenter  wp-image-21559" alt="warm-gun-badge" src="http://www.rudebaguette.com/assets/warm-gun-badge.jpg" width="512" height="384" /></a></p>
+<p><em>The following is a guest post from Michael Ferranti, a marketer and product guy living and working in San Francisco, USA. You can follow him on Twitter <a href="http://twitter.com/ferrantim">@ferrantim</a> where your tweets in English and français are welcome, or on his <a href="http://www.adifferentkindofmarketing.com/">blog</a>.</em></p>
+<p>For the last three years, a highlight of my year has been <a href="http://warmgun.com/" target="_blank">a design conference called Warmgun</a> organized by 500Startups. It&#8217;s always held in the stylish Kabuki Hotel in San Francisco&#8217;s Japantown, a venue that I&#8217;d be surprised can house next year&#8217;s conference since it was absolutely packed.  Unlike most conferences which focus on tactical how-to&#8217;s, Warmgun has consistently made attendees think about WHAT they are doing, not just HOW they are doing it.  Like all 500Startups events, <a href="http://www.livestream.com/500startups" target="_blank">the sessions are all taped and recorded</a>, so not being there is no reason to miss out on the lessons from some of technology&#8217;s best-known speakers from startups like Uber, Github, Mailchimp, and Etsy, and established companies like Amazon, Intuit and Adobe.</p>
+<h2>UX strategy means business</h2>
+<p>Rather than Warmgun starting the way it usually does– with 500Startups founding partner Dave McClure screaming and cussing about&#8230;everything–it started with the more sober, but way funnier, <a href="https://www.uie.com/" target="_blank">Jared Spool of UIE</a>, giving the most surprising, and insightful talk of the day.   During his talk, Spool argued the completely unsurprising and uninsightful case that all good business models are designed and that all designers should understand the business model of their company. #boring</p>
+<p><img class=" wp-image-21563 alignleft" alt="Gnomes_plan" src="http://www.rudebaguette.com/assets/Gnomes_plan.png" width="354" height="267" /></p>
+<p>What made the talk so unique is that in the past, most user experience discussions have focused on either the fact that user experience is important to begin with or how tactically to make it easier for the user to use the product in question.  And many talks at this year&#8217;s conference continued on that theme (a particularly good one was responsive design guru Luke Wroblewski&#8217;s talk <em>Designing Across Devices: The Future Media &amp; Cross Device Web Design)</em>.</p>
+<p>But what Spool challenged the audience to think about was if designers aren&#8217;t thinking big enough about Design.  Fundamentally, great business models are DESIGNED.   It&#8217;s not an accident that Amazon.com can sell its products at cost and still make a profit (Spool explained they can do this by turning over their inventory faster than they have to pay their suppliers, earning interest on the resulting cash).  Designers who stop at the pixel to perfect their &#8220;design&#8221; certainly aren&#8217;t stretching the limits of where their craft can lead.  Even designers who push their way into the core application functionality are not maximizing the business opportunity if they don&#8217;t understand how the user behavior they are enabling will affect business metrics like increased revenue or decreased costs.</p>
+<h2>We are all designers</h2>
+<p>If I had to sum up the theme of Warmgun 2013, it would be with the words of Paco Viñoly, Design Director, at mobile payments company Square: &#8220;We are all designers.&#8221; Viñoly was speaking more specifically about engineers being designers, but I think the concept extends well beyond &#8220;designers&#8221; vs. &#8220;engineers.&#8221; Georges Clemenceau, France&#8217;s prime minister during the end of World War I, famously quipped that war is too important to be left to the generals. The same can be said for design and business. Too often, especially in larger companies, we overvalue &#8220;expertise&#8221; and undervalue critical thinking.  Expertise in a domain does not equate to ability to succeed with customers, the ultimate driver of business success.  Likewise, critical thinking and creative problem solving doesn&#8217;t stop at the edges of our learned trade. When we think about creating a great company, design is clearly a huge part of that. Such a huge part that every person in the organization needs to think about how the stuff that gets &#8220;shipped&#8221; impacts customers or users and the business itself. Making good decisions purposefully is design.  And we are all designers.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.rudebaguette.com/2013/11/26/500-startups-warmgun-conference-recap-were-all-designers/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Meninvest raises €1.5 Million for dude media: suits, sports &amp; style</title>
+		<link>http://www.rudebaguette.com/2013/11/26/meninvest-raises-e1-5-million-for-dude-media-suits-sports-style/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=meninvest-raises-e1-5-million-for-dude-media-suits-sports-style</link>
+		<comments>http://www.rudebaguette.com/2013/11/26/meninvest-raises-e1-5-million-for-dude-media-suits-sports-style/#comments</comments>
+		<pubDate>Tue, 26 Nov 2013 09:45:01 +0000</pubDate>
+		<dc:creator>Liam Boogar</dc:creator>
+				<category><![CDATA[French-Startup]]></category>
+
+		<guid isPermaLink="false">http://www.rudebaguette.com/?p=21400</guid>
+		<description><![CDATA[Meninvest announced this month that they have raised an additional €1.5 Million, on top of the €10.1 Million the group has already raised, for their menswear-focused media, publishing and e-commerce. Founded by Marc Menasé, the media group, which runs sites like Menly, Menlook, as well as Oki-ni (acquired earlier this...]]></description>
+				<content:encoded><![CDATA[<p><img class="alignnone size-full wp-image-21571" alt="download" src="http://www.rudebaguette.com/assets/download14-e1385457783711.png" width="801" height="445" /></p>
+<p>Meninvest <a href="http://frenchweb.fr/exclusif-meninvest-media-leve-15-millions-deuros-et-devient-mensquare-group/133316">announced this month</a> that they have raised an additional €1.5 Million, on top of the €10.1 Million the group has already raised, for their menswear-focused media, publishing and e-commerce. Founded by Marc Menasé, the media group, which runs sites like Menly, Menlook, as well as Oki-ni (<a href="http://www.businessoffashion.com/2013/05/bof-exclusive-meninvest-acquires-progressive-mens-e-tailer-oki-ni.html">acquired earlier this year</a>), creates media targetted at men around fashion, lifestyle, sports and other themes, and also pushes eCommerce products of its brand partners.</p>
+<p>Seen as the male counterpart to AuFeminin, <a title="Continuing its digital spree, Axel Springer acquires My Little Paris via its subsidiary AuFeminin" href="http://www.rudebaguette.com/2013/11/22/axel-spring-purchases-my-little-paris/">which recently acquired My Little Paris</a>, Meninvest counts 10 Million unique visitors per month, up from a <a href="http://www.businessoffashion.com/2013/05/bof-exclusive-meninvest-acquires-progressive-mens-e-tailer-oki-ni.html">reported</a> 1.5 Million unique visitors earlier this year. Marc Menasé previously founded and sold Nextedia to the Largardère Group for $68 Million, and was among the co-founders of <a href="/tag/France-Digitale">France Digitale</a>, the association lobbying the French government on behalf of startups &amp; investors.</p>
+<p>The media world is filled with innovative female-oriented media groups, and Menasé is venturing into the surprisingly complicated market of creating media optimized to attract all men. Personally, suits &amp; sports don&#8217;t really get my eyes glowing, but I can understand that the group is on the road to becoming a major outlet for brands looking to attract men.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.rudebaguette.com/2013/11/26/meninvest-raises-e1-5-million-for-dude-media-suits-sports-style/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Criminal Case: 1 year later &amp; 100 Million players</title>
+		<link>http://www.rudebaguette.com/2013/11/26/criminal-case-reaches-100-million-players-just-in-time-for-its-first-birthday/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=criminal-case-reaches-100-million-players-just-in-time-for-its-first-birthday</link>
+		<comments>http://www.rudebaguette.com/2013/11/26/criminal-case-reaches-100-million-players-just-in-time-for-its-first-birthday/#comments</comments>
+		<pubDate>Tue, 26 Nov 2013 08:34:57 +0000</pubDate>
+		<dc:creator>Trista Bridges</dc:creator>
+				<category><![CDATA[French-Startup]]></category>
+		<category><![CDATA[Games]]></category>
+		<category><![CDATA[Criminal Case]]></category>
+		<category><![CDATA[pretty simple games]]></category>
+
+		<guid isPermaLink="false">http://www.rudebaguette.com/?p=21547</guid>
+		<description><![CDATA[&#160; We&#8217;ve been covering the spectacular rise of Criminal Case since its launch just one year ago.   Having integrated fun and accessible game play, high quality game design and integrated and deep storylines, they&#8217;ve managed to take the genre of hidden object games to a whole new level. To...]]></description>
+				<content:encoded><![CDATA[<p>&nbsp;</p>
+<p><img class="alignnone  wp-image-21548" alt="criminal-case-review1" src="http://www.rudebaguette.com/assets/criminal-case-review1.jpg" width="487" height="344" /></p>
+<p>We&#8217;ve been covering the spectacular rise of Criminal Case since its launch just one year ago.   Having integrated fun and accessible game play, high quality game design and integrated and deep storylines, they&#8217;ve managed to take the genre of hidden object games to a whole new level. To date, <a href="http://www.prettysimplegames.com/blog/">an impressive 100 million players have played Criminal Case </a>and, as of this month, it still logs 6M active daily users.</p>
+<p>Building Criminal Case has actually been a pretty substantial undertaking by the Pretty Simple Games team. Given its evolving storyline design, one new investigation is produced each week, with each representing several hours of entertainment for players. This has obviously caused Pretty Simple to rapidly expand its team since the Criminal Case launch, with 20 new people joining and plans to add another 100 over the next two years. Thanks to a solid stream of revenues, which according to the team is in the &#8217;8-digits&#8217;, they&#8217;re able to properly fund this expansion as well as, of course, work on the next big game hit(s).</p>
+<p>While still a huge hit for them, like most games Criminal Case has receded from its peak #2 position on Facebook. There is, however, still ample opportunity for Criminal Case to grow as it hasn&#8217;t yet been extended to mobile.  Following the lead of other gaming companies that have struck gold on mobile, including Supercell and King.com, they&#8217;re anticipating that the launch of Criminal Case on iOS in early 2014 and Android later in the year will have a similar effect for them. Shifting their focus to mobile should not only help them to grow in their existing markets, but also help them gain ground in markets where mobile gaming is king.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.rudebaguette.com/2013/11/26/criminal-case-reaches-100-million-players-just-in-time-for-its-first-birthday/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Collaborative listening platform Soundrop expands beyond Spotify; now available to Deezer users</title>
+		<link>http://www.rudebaguette.com/2013/11/25/soundrop-app-now-available-on-deezer/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=soundrop-app-now-available-on-deezer</link>
+		<comments>http://www.rudebaguette.com/2013/11/25/soundrop-app-now-available-on-deezer/#comments</comments>
+		<pubDate>Mon, 25 Nov 2013 13:40:42 +0000</pubDate>
+		<dc:creator>Liam Boogar</dc:creator>
+				<category><![CDATA[Mobile]]></category>
+		<category><![CDATA[Music]]></category>
+		<category><![CDATA[Deezer]]></category>
+		<category><![CDATA[Soundrop]]></category>
+		<category><![CDATA[Spotify]]></category>
+
+		<guid isPermaLink="false">http://www.rudebaguette.com/?p=21512</guid>
+		<description><![CDATA[The venture-funded music listening app Soundrop has announced that it will be available to Deezer users starting today. The application, which was originally built exclusively as a Spotify app, allows users to listen to music together in &#8216;rooms&#8217; &#8211; a Turntable.fm of sorts, if you will. The startup has already raised $3...]]></description>
+				<content:encoded><![CDATA[<p><img class="alignnone size-full wp-image-21532" alt="soundrop-lobby-in-deezer" src="http://www.rudebaguette.com/assets/soundrop-lobby-in-deezer.jpg" width="708" height="379" /></p>
+<p>The venture-funded music listening app Soundrop has announced that it will be available to Deezer users starting today. The application, which was originally built exclusively as a Spotify app, allows users to listen to music together in &#8216;rooms&#8217; &#8211; a Turntable.fm of sorts, if you will. The startup <a href="http://gigaom.com/2012/06/12/first-spotify-app-gets-funded-soundrop-raises-3m/">has already raised $3 Million</a> for its application, and a source close to them says that integration with Deezer is the first step in their strategy to grow beyond Spotify to a platform-agnostic collaborative listening service.</p>
+<p>When it launched, Soundrop was a big deal for Spotify. It is the first and among the only apps to raise money as a dedicated Spotify app, and it marked a real advantage point for Spotify over competitors; however, apps on Spotify (&amp; Deezer) are restricted from monetizing the music they play through advertisement, which makes it very difficult to remain an app on just one platform.</p>
+<p>As it spreads across multiple platforms, Soundrop may be able to help push new artists to listeners; however, the monetization possibilities remain thin. Ecosystems of music services like Deezer &amp; Spotify are not as developed as an app like this would require them to be &#8211; the service counts 150,000 active users per month on Spotify, representing about 2% of Spotify&#8217;s 7 Million premium users &#8211; and while Spotify &amp; Deezer undoubtedly see their respect app stores as growth possibilities, the fact remains that most users of such services are just using it as a listening service today.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.rudebaguette.com/2013/11/25/soundrop-app-now-available-on-deezer/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

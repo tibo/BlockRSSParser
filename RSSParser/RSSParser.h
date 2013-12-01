@@ -14,6 +14,7 @@
     NSMutableArray *items;
     NSMutableString *tmpString;
     void (^block)(NSArray *feedItems);
+    void (^failblock)(NSError *error);
 }
 
 

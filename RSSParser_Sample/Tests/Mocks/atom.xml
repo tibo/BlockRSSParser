@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Thibaut's blog]]></title>
+  <link href="http://blog.lelevier.com/atom.xml" rel="self"/>
+  <link href="http://blog.lelevier.com/"/>
+  <updated>2013-11-13T18:27:39+01:00</updated>
+  <id>http://blog.lelevier.com/</id>
+  <author>
+    <name><![CDATA[Thibaut LE LEVIER]]></name>
+    
+  </author>
+
+  
+  <entry>
+    <title type="html"><![CDATA[From Tumblr to Octopress]]></title>
+    <link href="http://blog.lelevier.com/blog/2013/11/13/from-tumblr-to-octopress/"/>
+    <updated>2013-11-13T03:34:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2013/11/13/from-tumblr-to-octopress</id>
+    <content type="html"><![CDATA[<p>2 years ago I tried to avoid having to maintain my own server for just few websites and CMS, and I moved my blog to <a href="http://tiboll.tumblr.com">Tumblr</a>.
+I haven&rsquo;t wrote much since but I heard many good things about <a href="http://octopress.org">Octopress</a> which is a simple blog engine based on <a href="http://jekyllrb.com/">Jekyll</a> and work with generated static files and git.
+It doesn&rsquo;t use any database, you need to push your blog on a git hosting to publish your article: kind of geeky but I like it, and who knows, may it will give me the faith to write about some topics I had in mind for few months (or years).</p>
+
+<p>The <a href="http://octopress.org/docs/">official documentation</a> is pretty helpfull so I wont cover the basics but here are few tips I had to deal with while setting up this new website.</p>
+
+<h3>Use RVM</h3>
+
+<p>Octopress is based on Ruby and use Sinatra so you will have to install serval gem to manage and generate your website. You should make a dedicate gemset for it.</p>
+
+<h3>Importing from Tumblr</h3>
+
+<p>I when to serveral article on the subject but obviously most of them was outdated.
+Jekyll provide several <a href="http://jekyllrb.com/docs/migrations/">tool to migrate</a> your archives from the main blog providers, including <a href="http://jekyllrb.com/docs/migrations/#tumblr">one for Tumblr</a></p>
+
+<p>You will need the <code>jekyll-import</code> and the <code>nogokiri</code> gems to run it:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -rubygems -e 'require "jekyll/jekyll-import/tumblr";
+</span><span class='line'>    JekyllImport::Tumblr.process("http://my.tumblr.com", format="md", grab_images=true, add_highlights=true, rewrite_urls=true)'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The importer will create a tumblr folder in the source/_post folder and import all your previous articles in markdown files.</p>
+
+<h3>Basic usage</h3>
+
+<p>Octopress is based on several rake receipe.</p>
+
+<p>The first tip I can give you is to escape the brackets if you use zsh, overwise rake will not understand your instructions: <code>rake new_post\["My New Post"\]</code></p>
+
+<p>Than what you may need to know is that you have to generate your website to create and update the static files related to your content using <em>rake generate</em>.</p>
+
+<p>Then while you are working you can use <code>rake preview</code> which will monitor every changes in your files and allow you to <a href="http://localhost:4000">preview your website locally</a>.</p>
+
+<h3>Deploy on Heroku</h3>
+
+<p>Octopress is made to be released on a Git hosting such as <a href="http://pages.github.com/">Github pages</a> or <a href="http://heroku.com">Heroku</a>.
+I have to handle multiple domain name so this is why I choose to use Heroku.</p>
+
+<p>On Heroku, Octopress will use Sinatra to publish the statics files from the <code>/public</code> folder. You need to remove it from the <code>.gitignore</code> and commit the whole folder to push it on heroku.</p>
+
+<p>There is a non official heroku <a href="https://github.com/matschaffer/heroku-buildpack-ruby-octopress">buildpack for Octopress</a> whish should be able to generate the website when receiving the push.
+I wasn&rsquo;t able to make it work properly (it didn&rsquo;t want to serve the static files) so I&rsquo;m using the official methode and I&rsquo;m generating the public folder on my laptop before pushing the website update.</p>
+
+<h3>Use Newrelic</h3>
+
+<p>I use <a href="http://newrelic.com">Newrelic</a> on this website, mostly to monitor it&rsquo;s availability and keep the Heroku dyno up.</p>
+
+<ul>
+<li><p>First you need to add the Newrelic addon on Heroku: <code>heroku addons:add newrelic:wayne</code></p></li>
+<li><p>Then open the addon (<em>heroku addons:open newrelic</em>) and get the <code>newrelic.yml</code> config file and put it in a folder (you will probably need to create it) named <code>config</code> at the root of your Octopress install.</p></li>
+<li><p>Add <code>gem 'newrelic_rpm'</code> in your <code>Gemfile</code> and run <em>bundle install</em></p></li>
+<li><p>Add theses 2 line to the top of the <code>config.ru</code> file at the root of you project (right after <code>require 'sinatra/base'</code> is fine):</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'newrelic_rpm'
+</span><span class='line'>
+</span><span class='line'>ENV['NEW_RELIC_LICENSE_KEY'] && RACK_ENV = 'production'</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>generate and deploy the app once again, and Newrelic should be able to see it online.</p></li>
+<li><p>On Newrelic, go to <code>your app-&gt; Settings -&gt; Availability monitoring</code> and set the root url of your Heroku instance as <code>URL to ping</code>.</p></li>
+</ul>
+
+
+<h3>Redirect and 404</h3>
+
+<p>Since I&rsquo;m moving from an other plateform I&rsquo;m expecting few dead link and I have done 2 things to avoid that :</p>
+
+<p>First you can redirect your user from a path to an other using rack rewrite and make sure they will find what they are looking for.</p>
+
+<ul>
+<li><p>add the rack rewrite gem (<code>gem 'rack-rewrite'</code>) to your <code>Gemfile</code> and run <code>bundle install</code></p></li>
+<li><p>in your <code>config.ru</code> file import the rack-rewrite gem: <code>require 'rack-rewrite'</code></p></li>
+<li><p>then before the <code>class SinatraStaticServer &lt; Sinatra::Base</code> add your rewrite rules:</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>use Rack::Rewrite do
+</span><span class='line'>  r301 %r{^/post/52291949020/the-setup/?$}, '/blog/2013/06/06/the-setup/'
+</span><span class='line'>  r301 %r{^/rss$}, '/atom.xml'
+</span><span class='line'>  r301 %r{^/feed$}, '/atom.xml'
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finaly I don&rsquo;t want my user to see any 404 errors sor I&rsquo;ve edited the <code>not_found</code> rule in the <code>config.ru</code> to redirect the user to the root of the website instead of showing the 404 page:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>not_found do
+</span><span class='line'>   redirect '/', 301
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Setup]]></title>
+    <link href="http://blog.lelevier.com/blog/2013/06/06/the-setup/"/>
+    <updated>2013-06-06T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2013/06/06/the-setup</id>
+    <content type="html"><![CDATA[<p><strong>Update</strong> (09/06/13) : I&rsquo;ve been quoted on the <a href="http://usesthis.com/community/">community page of Usesthis</a>. Thanks Usesthis!</p>
+
+<p><strong>Update</strong> (09/08/13, late) : As I said I the and of the article, I&rsquo;ve upgraded my main machine for a 13&#8221; 2013 Macbook Air. The full day batterie is really confortable, having a Mac able to handle very large external display too. The laptop is quite powerfull but in the future I may regret havingchosen the basic i5 processor…</p>
+
+<p>This post is inspired by the website <a href="http://usesthis.com/">Usesthis</a>. I&rsquo;m not
+really into geeky exhibitions but I love to talk about my setup, which is
+pretty basic but efficient fo my use.</p>
+
+<p><strong>What hardware?</strong></p>
+
+<p>My main machine is an old 2008 13&#8221; Macbook unibody. Apple made theses only for
+few months before the 13&#8221; get a Firewire port and became part of the Macbook
+pro line.</p>
+
+<p>It&rsquo;s still running with an old 2,4ghz C2D and I&rsquo;ve upgrade it with 4gb of
+memory and a 128gb SSD. Since I love working with a bigger screen resolution
+(I had a 27&#8221; iMac in my previous job), I&rsquo;m using a LG 22inch external display.</p>
+
+<p>I&rsquo;ve also an old Mac Mini hidden on a rack used as integration and deployment
+server using Jenkins.</p>
+
+<p>As an iOS developer I have an assortment of iOS devices to be able to test my
+latests applications in all situations.</p>
+
+<p><strong>And what software?</strong></p>
+
+<p>Since I&rsquo;m an iOS developer, my main tool is of course Xcode.</p>
+
+<p>I also do some Rails development from time to time using Sublime Text 2 and
+hosted on Heroku.</p>
+
+<p>My code is hosted on Github and/or Bitbucket, I use Trello as planing tool,
+and Redmine for bug tracking.</p>
+
+<p>Last but not least, I&rsquo;m a long time Spotify user and my playlists get bigger
+everyday.</p>
+
+<p><strong>What would be your dream setup?</strong></p>
+
+<p>I&rsquo;m pretty happy with my current setup right now but I&rsquo;m waiting for the next
+keynote to upgrade my main machine for a 13&#8221; Macbook Air.</p>
+
+<p>I almost forgot what is like to have more than an hour of battery life and I
+would love to be able to use my external screen to it&rsquo;s maximum resolution.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NSURLRequest to Curl Category]]></title>
+    <link href="http://blog.lelevier.com/blog/2013/04/21/nsurlrequest-to-curl-category/"/>
+    <updated>2013-04-21T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2013/04/21/nsurlrequest-to-curl-category</id>
+    <content type="html"><![CDATA[<p>print Curl request from an NSURLRequest for replay/debug purposes</p>
+
+<p><a href="https://github.com/tiboll/ReplayRequest">https://github.com/tiboll/ReplayRequest</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Handling error display in one place.]]></title>
+    <link href="http://blog.lelevier.com/blog/2012/11/20/handling-error-display-in-one-place/"/>
+    <updated>2012-11-20T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2012/11/20/handling-error-display-in-one-place</id>
+    <content type="html"><![CDATA[<p>I recently had to work on an existing app for the group who own my company.</p>
+
+<p>This project was first made by a service company and since it used one of
+these custom home made framework I had to rewrite it from scratch (doesn&rsquo;t
+mean I enjoy writing this app but at least I was able to make it my way).</p>
+
+<p>One of the first thing I had to deal with the original app is about error
+display.</p>
+
+<p>For instance, the app was registered for push notifications and it had to send
+the push token to the server. Problem is, the server was made to work with a
+device UDID as unique identifier (pre iOS 5) and since Apple change it&rsquo;s way
+to create an unique identifier, the server was not able to handle a same push
+token for two devices and so the server reply with a &ldquo;SQL primary key
+violation&rdquo; error which was display to the user as a &ldquo;from the server error&#8221;…</p>
+
+<p>You can imagine what it mean to your end user to see such kind of error at
+every launch: I had to find which part of the code was guilty to display this
+error. So I when to the basics… looking for an occurrence of
+&ldquo;UIAlertViewController&rdquo; in the whole project, to find which one is displaying
+error from the server response.</p>
+
+<p>Since I have to rewrite the whole application from scratch, and handle error
+from the server in some case (obviously not this one) I try to find the best
+way to handle and display error in one and only place in the whole
+application. This is how I made it:</p>
+
+<p>First I create a parent view controller which inherit from UIViewController
+and from which every view controller of my project will inherit.</p>
+
+<p>This ViewController has a methode named &ldquo;handleError:&rdquo; which take an NSError
+(or if you prefere a custom class of error) as parameter.</p>
+
+<p>In this method, the ViewController may display the error in the console or
+write it in a log file. Than it handle the specific error case like a &ldquo;network
+error&rdquo; based on error code or type, and display the localized error to the
+user. And finally if the error isn&rsquo;t handle in the application, this is the
+perfect place to raise and display a generic error which says &ldquo;something went
+wrong&rdquo;.</p>
+
+<div><script src='https://gist.github.com/4115246.js?file=ParentViewController.m'></script>
+<noscript><pre><code>@interface ParentViewController : UIViewController ()
+
+-(void)handleError:(NSError *)error;
+
+@end
+
+//...
+
+@implementation ParentViewController
+
+-(void)handleError:(NSError *)error
+{
+   NSLog(@&quot;%@&quot;,[error localizedDescription]);
+
+   NSString *message;
+
+   if (error.code == CUSTOM_NETWORK_ERROR_CODE)
+   { // handle specific error kind
+      message = @&quot;Network Error&quot;;
+   }
+   else if (error.code == KNOWN_SERVER_ERROR_CODE)
+   { // known error to display as if from the server
+      message = error.domain;
+   }
+   else
+   { //generic error message
+      message = @&quot;Something went wrong&quot;;
+   }
+
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;Error&quot;
+                                                   message:message
+                                                  delegate:nil
+                                         cancelButtonTitle:@&quot;OK&quot;
+                                          otherButtonTitle:nil];
+}
+
+//...
+
+@end</code></pre></noscript></div>
+
+
+<p>Then the second thing is to inherit each one of you application ViewController
+from this generic ViewController.</p>
+
+<p>Than, in each ViewController, everywhere there is an error to handle (delegate
+methods, failure blocks, parsing error…) you just have to forward it to [self
+handleError:myError].</p>
+
+<p>And finaly you can overwrite this handleError method to manage specifics error
+like login error if you are on a login screen…</p>
+
+<div><script src='https://gist.github.com/4115246.js?file=LoginViewController.m'></script>
+<noscript><pre><code>@interface LoginViewController : ParentViewController ()
+
+@end
+
+// ...
+
+@implementation
+
+#pragma mark LoginServiceDelegate
+-(void)loginDidFailWithError:(NSError *)loginError
+{
+   [self handleError:loginError];
+}
+
+// overwrite error handling
+-(void)handleError:(NSError *)error
+{
+   if (error.code == INVALIDE_PASSWORD_ERROR_CODE)
+   {
+      // manage invalid password error case...
+      return;
+   }
+
+   [super handleError:error];
+}
+
+//...
+
+@end</code></pre></noscript></div>
+
+
+<p>My 2 cents coding style… hope it&rsquo;s help</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RSSParser: AFNetworkingXMLRequestOperation based RSS parser]]></title>
+    <link href="http://blog.lelevier.com/blog/2012/02/13/rssparser-afnetworkingxmlrequestoperation-based-rss-parser/"/>
+    <updated>2012-02-13T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2012/02/13/rssparser-afnetworkingxmlrequestoperation-based-rss-parser</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/tiboll/BlockRSSParser">RSSParser: AFNetworkingXMLRequestOperation based RSS
+parser</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Feedbacks from iOS to Redmine]]></title>
+    <link href="http://blog.lelevier.com/blog/2011/04/16/feedbacks-from-ios-to-redmine/"/>
+    <updated>2011-04-16T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2011/04/16/feedbacks-from-ios-to-redmine</id>
+    <content type="html"><![CDATA[<p>I just push on Github a very simple code which allows your App users to send
+feedback directly to your Redmine tracker using a MessageUI-like view.</p>
+
+<p><a href="http://dl.dropbox.com/u/2044697/StaticFiles/redminefeedback/iphone.png"><img src="http://dl.dropbox.com/u/2044697/StaticFiles/redminefeedback/iphone-min.png" alt="iPhone
+Interface" /></a><a href="http://dl.dropbox.com/u/2044697/StaticFiles/redminefeedback/redmine.png"><img src="http://dl.dropbox.com/u/2044697/StaticFiles/redminefeedback/redmine-min.png" alt="Redmineresult" /></a></p>
+
+<p>Feel free to suggest any feature or to fork it!</p>
+
+<p><a href="https://github.com/tiboll/Redmine-Feedbacks">[https://github.com/tiboll/Redmine-Feedbacks](https://github.com/tiboll
+/Redmine-Feedbacks)</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Migration de Wordpress à Tumblr]]></title>
+    <link href="http://blog.lelevier.com/blog/2011/03/06/migration-de-wordpress--tumblr/"/>
+    <updated>2011-03-06T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2011/03/06/migration-de-wordpress&#8211;tumblr</id>
+    <content type="html"><![CDATA[<p>Dernièrement, je me suis posé la question sur la réelle utilité de mon serveur
+&ldquo;dédié&rdquo; (actuellement un serveur virtuel VQ7 chez Hetzner)</p>
+
+<p>Suite aux problème de fiabilité rencontré sur mon précédent serveur (merci
+Ikoula et Maplateformeweb) je me suis arrangé pour externaliser au max
+l&#8217;hébergement de quelques sites vers des mutualisés et au final, ce serveur
+n&#8217;héberge plus grand chose: Mon blog, Redmine, SVN et quelques autres outils
+de dev, quelques Wiki,… mais rien ne nécessitant ni performances, ni de réel
+besoins en uptime.</p>
+
+<p>Qui plus est, un serveur ça demande de l&#8217;entretien, des mises à jour, des
+sauvegardes, de la configuration… etc…</p>
+
+<p>Résultat des courses, mon blog se retrouve ici sur Tumblr après une migration
+plus ou moins rapide depuis Wordpress.</p>
+
+<p>Ce dernier possède un outil d&#8217;export au format XML permettant de récupérer
+l&#8217;intégralité du contenu déjà publié. De son coté, Tumblr possède un API
+complet permettant de reposter le contenu qui nous intéresse.</p>
+
+<p>On trouve alors quelques scripts (certains mieux fait que d&#8217;autres) sur le
+net, malheureusement très peu, permettant de réaliser cet import de manière
+plus ou moins automatique.</p>
+
+<p>Mon choix c&#8217;est alors porté sur un petit script en ruby dispo sur Github qui
+c&#8217;est occupé pour moi de reconstruire l&#8217;intégralité de mon contenu, avec les
+bon hashtag et les bonnes dates.</p>
+
+<p>Oubliez cependant la gestion des commentaires (je n&#8217;ai trouvé aucun script
+capable de gérer cet aspect) ou encore la compatibilité des URL (les
+permaliens ne sont pas géré de la même manière entre Wordpress et Tumblr).</p>
+
+<p>Bienvenu donc sur cette nouvelle version de mon blog, opérationnel pour de
+nouveaux sujets très prochainement :&ndash;)</p>
+
+<div><script src='https://gist.github.com/332449.js?file=tumblr-import.rb'></script>
+<noscript><pre><code>require &#39;rubygems&#39;
+require &#39;net/http&#39;
+require &#39;nokogiri&#39;
+
+TUMBLR_USER = &#39;your@email.com&#39;
+TUMBLR_PASS = &#39;yourpassword&#39;
+
+url = URI.parse(&#39;http://www.tumblr.com/api/write&#39;)
+
+# Read the WP export file
+counter = 0
+doc = Nokogiri::XML(File.read(&quot;wordpress.xml&quot;))
+doc.xpath(&#39;//item&#39;).each do |item|
+  status = item.at_xpath(&#39;wp:status&#39;).text
+  title = item.at_xpath(&#39;title&#39;).text
+  if %w(publish draft).include?(status)
+    puts &quot;publishing item #{title}...&quot;
+    counter += 1
+
+    res = Net::HTTP.post_form(url, {
+      &#39;email&#39; =&gt; TUMBLR_USER,
+      &#39;password&#39; =&gt; TUMBLR_PASS,
+      &#39;type&#39; =&gt; &#39;regular&#39;,
+      &#39;format&#39; =&gt; &#39;markdown&#39;,
+      &#39;title&#39; =&gt; title,
+      &#39;date&#39; =&gt; item.at_xpath(&#39;wp:post_date&#39;).text,
+      &#39;slug&#39; =&gt; item.at_xpath(&#39;wp:post_name&#39;).text,
+      &#39;body&#39; =&gt; item.at_xpath(&#39;content:encoded&#39;).text.gsub(/&lt;!--more--&gt;/, &#39;&#39;),
+      &#39;tags&#39; =&gt; item.xpath(&#39;category[@nicename]&#39;).map(&amp;:text).join(&#39;,&#39;),
+      &#39;state&#39; =&gt; (status == &#39;publish&#39;) ? &#39;published&#39; : &#39;draft&#39;
+    })
+
+    puts res.body
+    sleep(1)
+    if counter % 5 == 0
+      # sleep for a longer amount of time every 5 items 
+      sleep(30)
+    end
+  else
+    puts &quot;Ignoring item #{title}&quot;
+  end
+end
+</code></pre></noscript></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Start Hudson or Jenkins with Launchd on Mac OS X]]></title>
+    <link href="http://blog.lelevier.com/blog/2011/02/07/start-hudson-or-jenkins-with-launchd-on-mac-os-x/"/>
+    <updated>2011-02-07T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2011/02/07/start-hudson-or-jenkins-with-launchd-on-mac-os-x</id>
+    <content type="html"><![CDATA[<div><script src='https://gist.github.com/813900.js?file=org.jenkins-ci.jenkins.plist'></script>
+<noscript><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+ &lt;key&gt;UserName&lt;/key&gt;
+ &lt;string&gt;jenkins&lt;/string&gt;
+ &lt;key&gt;Label&lt;/key&gt;
+ &lt;string&gt;org.jenkins-ci.jenkins&lt;/string&gt;
+ &lt;key&gt;EnvironmentVariables&lt;/key&gt;
+   &lt;dict&gt;
+     &lt;key&gt;JENKINS_HOME&lt;/key&gt;
+     &lt;string&gt;/Users/jenkins/Jenkins/work/&lt;/string&gt;
+   &lt;/dict&gt;
+ &lt;key&gt;ProgramArguments&lt;/key&gt;
+ &lt;array&gt;
+ &lt;string&gt;/usr/bin/java&lt;/string&gt;
+ &lt;string&gt;-jar&lt;/string&gt;
+ &lt;string&gt;/Users/jenkins/Jenkins/jenkins.war&lt;/string&gt;
+ &lt;/array&gt;
+ &lt;key&gt;RunAtLoad&lt;/key&gt;
+ &lt;true/&gt;
+ &lt;key&gt;SessionCreate&lt;/key&gt;
+ &lt;true /&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></pre></noscript></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GeekTrip à San Francisco]]></title>
+    <link href="http://blog.lelevier.com/blog/2011/01/02/geektrip--san-francisco/"/>
+    <updated>2011-01-02T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2011/01/02/geektrip&#8211;san-francisco</id>
+    <content type="html"><![CDATA[<p>Il y a maintenant un peu plus d’un mois, <a href="http://bcharp.fr">Boris</a> et moi même
+revenions d’un voyage gagné grace au concours Smartphone organisé par la SNCF
+auquel nous avions participé durant l’été sur plateforme iPhone.</p>
+
+<p>Mieux vaut tard que jamais, voici donc le bilan d’un voyage plein de
+rencontres.</p>
+
+<p><strong>Samedi 20 Novembre 2010</strong>: Après un peu plus de 10h de vol, nous arrivons à San Francisco et nous rencontrons notre guide pour la semaine: <a href="http://philjeudy.com/">Philippe Jeudy</a>, inventeur du <a href="http://www.geektrip.org/">Geektrip</a> que nous allons vivre pendant une semaine. Le temps de s’installer à l’hôtel est nous repartons nous promener pour la soirée</p>
+
+<p><strong>Dimanche 21 Novembre 2010</strong>: Pas de visite prévu, on en profite pour continuer de visiter la ville et aller faire un tour jusqu’au Golden Gates Bridge pour prendre quelques photos.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxouSHWJ1qgcouj.jpg" alt="" /></p>
+
+<p><strong>Lundi 22 Novembre 2010</strong>: les hostilité commencent! Notre première rencontre se déroule au Crown Plaza de Palo Alto avec un “<a href="http://en.wikipedia.org/wiki/Venture_capital">venture capital</a>” chargé de trouver des startup prometteuses dans lesquels son client, Panasonic, pourra investir en étant certain du résultat.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxraRitq1qgcouj.jpg" alt="" /></p>
+
+<p>Suite de la matinée avec une visite chez <a href="http://www.plugandplaytechcenter.com/">Plug And Play Tech
+Center</a> à Sunnyvale une sorte
+d’incubateur à l’échelle américaine pour jeune entreprise innovante capable
+d’offrir un package tout complet pour aider les startup à se lancer: bureaux,
+datacenter, networking, conférences, partenaires d’investissements…</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxsbiUW01qgcouj.jpg" alt="" /></p>
+
+<p>Ensuite direction Okland de l’autre coté de la baie pour terminer la journée
+avec <a href="http://www.bart.gov/">BART: Bay Area Rapid Transit</a> où Melissa Jordan et
+son équipe nous ont présenté leur politique d’Open Data et l’évolution de
+leurs web services permettant à n’importe quel développeur de pouvoir utiliser
+les informations fournis par BART (trajets, perturbations, horaires en temps
+réel…) pour créer ses applications.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxssxHIL1qgcouj.jpg" alt="" /></p>
+
+<p><strong>Mardi 23 Novembre 2010</strong>: Nous débutons la journée par une visite dans les locaux de <a href="http://www.twitter.com">Twitter</a> accueilli par Marc et Arnaud, 2 développeurs français chez Twitter qui nous parlent de l’état actuel de leurs services: 175 Millions d’utilisateurs, 95 Millions de Tweets par jours, 370 000 nouveaux utilisateurs par jours, et 1 Milliard de requête sur l’API chaque jour.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxtsYpDT1qgcouj.jpg" alt="" /></p>
+
+<p>Nous passons ensuite chez <a href="http://rhomobile.com/">Rhomobile</a> à San José où
+Adam Blum, CEO de Rhomobile nous a présenté sa solution de framework Rhodes de
+développement mobile multi-plateformes basé sur Ruby.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxu6MHsN1qgcouj.jpg" alt="" /></p>
+
+<p>Ensuite direction le célèbre <a href="http://fr.wikipedia.org/wiki/Googleplex">Google
+Plex</a> à Mountain View pour une
+présentation sur la monétisation des applications mobiles par l’équipe <a href="http://www.admob.com/">Google
+AdMob</a> suivit ensuite d’un passage devant le bâtiment
+Android dans lequel nous n’avons malheureusement pas eu le droit d’entrer.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxv3XZLU1qgcouj.jpg" alt="" /></p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxw3GaRH1qgcouj.jpg" alt="" /></p>
+
+<p>Enfin, nous terminons la journée par un passage dans les sales office de
+Microsoft à San Francisco pour une présentation du programme <a href="http://www.microsoft.com/bizspark/">Microsoft
+BizSpark</a> par <a href="http://about.me/jacobmullins">Jacob
+Mullins</a> suivit d’une présentation du
+développement sur Windows Phone 7 par Kurt Brocket
+d’<a href="http://www.identitymine.com/">IdentityMine</a>.</p>
+
+<p><strong>Mercredi 24 Novembre 2010</strong>: La journée commence par une visite chez <a href="http://www.seesmic.com">Seesmic</a>, la société crée par <a href="http://loiclemeur.com/">Loic Le Meur</a>. Bastien Vidal et Johann Romefort nous y explique le fonctionnement de l’entreprise ainsi que leur orientation B2B à venir suite à leur association avec SalesForces.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxwptYXB1qgcouj.jpg" alt="" /></p>
+
+<p>Direction ensuite le Samovar tea lounge où nous rencontrons Holger Luedorf de
+chez <a href="http://www.foursquare.com">Foursquare</a> pour parler du taux d’utilisation
+des check-in et des projets de Foursquare en terme de publicité ciblée et
+localisée.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxx6LtCf1qgcouj.png" alt="" /></p>
+
+<p>Nous profitons ensuite d’un peu de temps libre pour faire les touristes du
+coté des locaux de Facebook, sur le campus de Sanford University et aux
+headquarters d’Apple. Malheureusement, veille de Thanksgiving la plupart des
+bureaux sont vides.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxxrgKcl1qgcouj.jpg" alt="" /></p>
+
+<p>1 Infinite Loop</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxyf1QhD1qgcouj.jpg" alt="" /></p>
+
+<p>Enfin dernière étape de la journée nous rencontrons Julien Decot de chez
+<a href="http://www.skype.com">Skype</a> dans les locaux d’eBay à San José. Il nous
+explique comment Skype vise maintenant à s’implanter dans les entreprises avec
+des solutions de gestions multi-compte centralisé et des solutions de couplage
+avec une installation téléphonique existante. Il nous parle aussi de la
+nouvelle cible de Skype en terme de plateforme: les télévisions et leur OS
+embarqué.</p>
+
+<p><strong>Jeudi 25 Novembre 2010</strong>: Day off. Phil nous emmène passer Thanksgiving dans la <a href="http://fr.wikipedia.org/wiki/Napa_Valley">Napa Valley</a> pour visiter une Winerie et déguster du vin Californien. Comparé à ce qu’on peut trouver dans la région Bordelaise c’est… pas encore ça…</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxz4QFWS1qgcouj.jpg" alt="" /></p>
+
+<p><strong>Vendredi 26 Novembre 2010</strong>: Dernier jours de vadrouille avant de regagner l’aéroport, nous commençons donc cette dernier journée par nous rendre au Pier 38 pour rendre visite à un autre incubateur d’entreprise d’origine espagnole: <a href="http://www.opinno.com/">Opinno</a></p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnxzy8dVT1qgcouj.jpg" alt="" /></p>
+
+<p>Enfin, nous terminons notre GeekTrip par une visite chez
+<a href="http://placecast.net/">PlaceCast</a> où Anne Bezancon nous présente sa solution
+de publicité géolocalisée disponible pour tous les téléphones portable en
+diffusant les publicité par SMS.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhny0mYWFq1qgcouj.jpg" alt="" /></p>
+
+<p><strong>Remerciements</strong>:</p>
+
+<p>Plus qu’un bilan, cet article est l’occasion pour moi de remercier les
+personnes qui ont rendu ce projet possible: Daniel Jasmin, Explolab et la SNCF
+pour avoir organiser le concours et mis en jeux ce voyage fabuleux. Ingésup,
+notre école au nom de laquelle nous avons participé à ce concours et qui nous
+à apporté son soutien tout au long de nos travaux. Les entreprises Plug and
+Play Tech Center, BART, Twitter, Rhomobile, Google, Microsoft, Seesmic,
+Foursquare, Skype, Opinno, PlaceCast,… et celles que j’ai pu oublié pour leur
+accueil et leurs présentations. Et enfin l’excellent Philippe Jeudi, créateur
+du Geektrip qui nous a trimbalé tout au long de cette semaine pour nous faire
+rencontrer les acteurs de la Silicon Valley que nous n’aurions jamais pu
+rencontrer autrement! Merci Phil!</p>
+
+<p><a href="http://www.geektrip.com">[http://www.geektrip.com](http://www.geektrip.com)</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Concours Smartphone SNCF: Bilan final]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/11/19/concours-smartphone-sncf-bilan-final/"/>
+    <updated>2010-11-19T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/11/19/concours-smartphone-sncf-bilan-final</id>
+    <content type="html"><![CDATA[<p>Mercredi dernier avait lieu l&#8217;annonce officielle du classement final toutes
+plateformes confondues pour le concours SNCF auquel nous avons participé Boris
+et moi même.</p>
+
+<p>Et nous arrivons donc 3 ème derrière la société Cap Gemini et la société
+Mobile2You.</p>
+
+<p>Et pour ce qui est du voyage, nous décollons dans 2 jours.</p>
+
+<p>Sans doute des photos à venir bientôt :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Concours SNCF, les premiers résultats]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/10/04/concours-sncf-les-premiers-rsultats/"/>
+    <updated>2010-10-04T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/10/04/concours-sncf-les-premiers-rsultats</id>
+    <content type="html"><![CDATA[<p>Les finalistes du concours SNCF viennent d&#8217;être annoncés, et nous sommes de la
+partie! <a href="http://pro.01net.com/editorial/521684%0A/concours-smartphone-sncf-voici-les-finalistes/%20"> [http://pro.01net.com/editorial/521684/concours-smartphone-sncf-
+voici-les-finalistes/](http://pro.01net.com/editorial/521684/concours-
+smartphone-sncf-voici-les-finalistes/)</a> Merci à tous ceux qui ont
+voté pour nous, on vous revaudra ça! :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Concours SNCF: votez pour nous!]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/09/28/concours-sncf-votez-pour-nous/"/>
+    <updated>2010-09-28T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/09/28/concours-sncf-votez-pour-nous</id>
+    <content type="html"><![CDATA[<p>Comme vous le savez, nous participons depuis quelques mois au concours
+Smartphone SNCF sur plateforme iPhone. C&#8217;est maintenant que nous avons besoin
+de vous! votez pour nous à cette adresse:</p>
+
+<p><a href="http://pro.01net.com/editorial/521454/concours-%0Asmartphone-sncf-cest-a-vous-de-voter/">[http://pro.01net.com/editorial/521454/concours-smartphone-sncf-cest-a-vous-
+de-voter/](http://pro.01net.com/editorial/521454/concours-smartphone-sncf-
+cest-a-vous-de-voter/)</a></p>
+
+<p>Merci à tous!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[L'astuce du jour: install des packets avec Gem sans documentation]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/08/27/lastuce-du-jour-install-des-packets-avec-gem-sans-documentation/"/>
+    <updated>2010-08-27T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/08/27/lastuce-du-jour-install-des-packets-avec-gem-sans-documentation</id>
+    <content type="html"><![CDATA[<p>Pour gagner du temps, de la place, du débit… et tout ce que vous voulez, il
+n&#8217;est pas souvent utile d&#8217;installer la documentation ri (documentation en
+ligne de commande) et/ou rdoc (documentation aux &ldquo;normes&rdquo; ruby) qui accompagne
+les packets gems déployé sur un serveur de prod.</p>
+
+<p>On va donc pouvoir installer notre packet de la manier suivante (ici rails en
+exemple):</p>
+
+<p>$ gem install rails &mdash;no-rdoc &mdash;no-ri</p>
+
+<p>my 2 cents…</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVN: Gestion des dépendances externes]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/08/05/svn-gestion-des-dpendances-externes/"/>
+    <updated>2010-08-05T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/08/05/svn-gestion-des-dpendances-externes</id>
+    <content type="html"><![CDATA[<p>Le versionning de vos projets de développement est une chose essentielle pour
+garantir la sécurité et la tenu à jour de vos sources entre développeurs.</p>
+
+<p>Si l’intégralité des sources de votre projet peut être place sur un seul et
+unique dépôt, il arrive souvent que votre application soit dépendante d’un
+framework ou de quelques librairies importé d’un autre projet et souvent d’un
+autre dépôt SVN.</p>
+
+<p>Il est donc relativement lourd est contraignant de devoir stocker et
+versionner les fichiers de ces sources externes qui ne seront de toute façon
+pas à jour par rapport au dépôt sur lequel vous l’aurez récupéré. Prenons
+l’exemple d’un projet PHP utilisant Zend Framework. Nous avons déjà mis en
+place la structure MVC du projet et nous l’avons importé vers notre dépôt SVN.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnya9C5591qgcouj.png" alt="" /></p>
+
+<p>Nous souhaitons ajouter le Framework à jour dans le dossier /library à partir
+du dépôt officiel: <a href="http://framework.zend.com/svn/framework/standard/bra%0Anches/release-1.9/library/">[http://framework.zend.com/svn/framework/standard/branches
+/release-1.9/library/](http://framework.zend.com/svn/framework/standard/branch
+es/release-1.9/library/)</a></p>
+
+<p>Commencez donc par vous placer dans le dossier /library en ligne de commande.</p>
+
+<p>Pour déclarer notre dépôt externe nous allons utiliser la propriété
+“externals”  à l’aide de la fonction “propset” de SVN.</p>
+
+<blockquote><p>svn propset svn:externals “<a href="http://framework.zend.com/svn/framework/standard/">http://framework.zend.com/svn/framework/standard/</a>
+branches/release-1.9/library/Zend Zend” .</p></blockquote>
+
+<p>Le point passé en dernier argument précise que nous déclarons cette propriété
+dans le dossier courant, ne l’oubliez surtout pas!</p>
+
+<p>SVN nous répond alors: property ‘svn:externals’ set on ‘.’ Il ne nous reste
+plus qu’a faire un “svn up” pour mettre à jour la copie locale et récupérer
+ainsi une copie à jour du Framework sans que celui si soit stocké sur votre
+dépôt.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnyakN1Qg1qgcouj.png" alt="" /></p>
+
+<p>Votre projet sera maintenant à jour à chaque mise à jour et vous voilà
+affranchis de toute maintenance sur vos sources externes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mettre à jour son instance Redmine]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/07/19/mettre--jour-son-instance-redmine/"/>
+    <updated>2010-07-19T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/07/19/mettre&#8211;jour-son-instance-redmine</id>
+    <content type="html"><![CDATA[<p>Aujourd&#8217;hui est un grand jour pour le projet Redmine, la sortie de la première
+release candidate: Redmine version 1.0</p>
+
+<p>Depuis 6 semaines la priorité est aux corrections de bugs et les évolutions
+sont mises de coté.</p>
+
+<p>Voici donc l&#8217;occasion de parler mise à jour!</p>
+
+<p>Partons donc du principe que nous avons une instance de Redmine fonctionnelle.</p>
+
+<p>La manière dont celle si a été installé importe peu puisque nous allons ici
+repartir sur une version propre fraichement récupérée sur le SVN officiel.</p>
+
+<p>Commencez donc par vous placer dans le dossier où vous souhaitez faire votre
+installation et faite un checkout sur le dépôt officiel: <a href="http://redmine.rubyforge.org/svn/branches/1%0A.0-stable/">http://redmine.rubyf
+orge.org/svn/branches/1.0-stable/</a></p>
+
+<p>Placez vous ensuite dans le dossier contenant votre nouvelle instance de
+redmine . Copiez les fichiers de configuration depuis votre ancienne instance
+(database.yml pour la configuration des bases de données, et email.yml pour
+les mails sortants) dans le dossier config/. Copiez également le dossier
+/files de votre instance d&#8217;origine afin de conserver les fichiers joints à vos
+projets. Copiez vos plugins dans le dossier vendor/plugins/. Et enfin copiez
+votre thème dans le dossier public/themes/.</p>
+
+<p>Passons maintenance à l&#8217;execution des script rake qui vont nous permettre de
+mettre à jour la base de données et la configuration de Redmine.</p>
+
+<p>Placez vous à nouveau à la racine de votre instance et commencez par recréer
+l&#8217;espace de session:</p>
+
+<blockquote><p>rake generate_session_store</p></blockquote>
+
+<p>Effectuez ensuite la configuration des plugins que vous avez copié tout à
+l&#8217;heure (note: production est le nom de notre instance de production):</p>
+
+<blockquote><p>rake db:migrate:upgrade_plugin_migrations RAILS_ENV=production</p></blockquote>
+
+<p>Et enfin, migrez la base de données vers cette nouvelle version de Redmine
+(encore une fois production est le nom de notre instance):</p>
+
+<blockquote><p>rake db:migrate_plugins RAILS_ENV=production</p></blockquote>
+
+<p>Voici donc votre instance à jour et, si vous avez suivi cet article à la
+lettre, en version stable.</p>
+
+<p>Quelques petites choses à vérifiez tout de même:</p>
+
+<ul>
+<li>Si vous ressentez des lenteurs à l&#8217;exécution ou que vous remarquez des problèmes d&#8217;affichage de l&#8217;interface: nettoyez le cache</li>
+</ul>
+
+
+<blockquote><p>rake tmp:cache:clear</p></blockquote>
+
+<ul>
+<li>Si vos utilisateurs ne peuvent plus se logguer, ou accéder à certaines parties de Redmine: forcez la suppression des sessions en cours</li>
+</ul>
+
+
+<blockquote><p>rake tmp:sessions:clear</p></blockquote>
+
+<ul>
+<li>Pensez également à faire un tour dans la partie &ldquo;rôles et permissions&rdquo; de Redmine pour vérifier les autorisations sur de nouvelles fonctionnalités qui pourraient ne pas être prise en compte dans les rôles que vous aviez créé</li>
+<li>Et enfin, chose importante, pensez à vérifier les droit posix sur les fichiers de votre instance, sans quoi vous ne pourrez utiliser certaines fonctionnalités (l&#8217;upload de fichier par exemple)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Concours Smartphone SNCF]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/07/01/concours-smartphone-sncf/"/>
+    <updated>2010-07-01T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/07/01/concours-smartphone-sncf</id>
+    <content type="html"><![CDATA[<p><img src="http://media.tumblr.com/tumblr_lhny6von4Q1qgcouj.jpg" alt="" /></p>
+
+<p>Nous venons d’être sélectionnés pour le concours Smartphone SNCF sur la
+plateforme iPhone.</p>
+
+<p>Nous participons à ce projet dans le but de créer une application mobile axée
+sur l’ergonomie et la simplicité d’utilisation afin de faciliter la
+communication entre le contrôleur et les usagers tout en faisant face à des
+contraintes techniques liées aux conditions d’utilisations et de
+connectivités.</p>
+
+<p>Nous participons à ce projet avec le support et sous le nom de notre école,
+<a href="http://www.ingesup.com">Ingésup</a>.</p>
+
+<p>Plus d’informations:</p>
+
+<p>&ndash;<a href="http://www.01net.com/statiquesv6/sncf/pres.html">Les détails du concours</a></p>
+
+<p>&ndash;<a href="http://pro.01net.com/editorial/519496/concours-smartphone-sncf-voici-les-candidats/">Les différentes équipes</a></p>
+
+<p>&ndash;<a href="http://www.bcharp.fr">Le blog de Boris</a></p>
+
+<p>&ndash;<a href="http://blog.ingesup.com">Le blog d’Ingésup</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Administrer Apple Remote Desktop en ligne de commande]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/06/12/administrer-apple-remote-desktop-en-ligne-de-commande/"/>
+    <updated>2010-06-12T00:00:00+02:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/06/12/administrer-apple-remote-desktop-en-ligne-de-commande</id>
+    <content type="html"><![CDATA[<p>Apple Remote Desktop (ou encore ARD) et l’outil de prédilection d’un
+administrateur Mac.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnycrj2Bd1qgcouj.png" alt="" /></p>
+
+<p>Cet outil permet non seulement d’observer et de prendre la main aussi bien sur
+des postes clients que sur les xserve de l’entreprise (même durant
+l’installation), mais aussi de déployer de manière centralisée des packets,
+des scripts, de lancer des commandes à distance, ou encore de générer des
+rapports sur l’état des machines. Sur un Mac OS X Server, l’installateur vous
+propose lui même d’activer ARD à la fin de l’installation.</p>
+
+<p>Sur un poste client, ARD se basant sur le partage decran, celui ci n’est pas
+forcement actif lorsque l’on peut en avoir besoin… Voici donc quelques
+commandes qui vont nous permettre de l’activer grâce à un accès SSH:</p>
+
+<blockquote><p>$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/R
+esources/kickstart -activate -configure -access -on -restart -agent -privs
+-all</p></blockquote>
+
+<p>Cette ligne activera donc l’accès ARD pour n’importe quel compte autorisé à se
+loguer sur cette machine (les utilisateurs locaux et réseau).</p>
+
+<p>Vous pouvez également restreindre cette accès afin de n’autoriser que les
+utilisateurs possédant des droits d’administration sur la machine en question
+en lançant plutôt cette commande:</p>
+
+<blockquote><p>$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/R
+esources/kickstart -activate -configure -access -on -users admin -privs -all
+-restart -agent -menu</p></blockquote>
+
+<p>Toujours via le terminal, vous pouvez également désactiver ARD et son
+démarrage automatique:</p>
+
+<blockquote><p>$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/R
+esources/kickstart -deactivate -stop</p></blockquote>
+
+<p>Les utilisateurs déjà habitués à ARD auront certainement déjà remarqué qu’il
+arrive que le service se retrouve indisponible selon la version d’ARD et de
+Mac OS, vous pouvez très facilement redémarrer ARD, toujours en ligne de
+commande:</p>
+
+<blockquote><p>$ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/R
+esources/kickstart -restart -agent</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Coloration syntaxique dans Redmine]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/03/14/coloration-syntaxique-dans-redmine/"/>
+    <updated>2010-03-14T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/03/14/coloration-syntaxique-dans-redmine</id>
+    <content type="html"><![CDATA[<p>De base, Redmine propose déjà une coloration syntaxique pour la navigation
+dans les sources du dépôt via un quelconque SCM.</p>
+
+<p>Malheureusement cette coloration se limite à quelques langages les plus
+connus, PHP ou C par exemple sont déjà pris en charge.</p>
+
+<p>Viennent ensuite les langages moins courants comme Objective-C qui, avec
+lequel le moteur de coloration d’origine va rester noir sur blanc.</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnym9f3bs1qgcouj.png" alt="" /></p>
+
+<p>Il existe donc un plugin qui va nous permettre de résoudre ce problème en
+intégrant un moteur de coloration syntaxique nommé Ultraviolet déjà utilisé
+dans de nombreux projets dont l’IDE TextMate.</p>
+
+<p>Pour l’installer rien de plus simple. Commencez par installer libonig-dev
+(pour la reconnaissance d’expressions régulières) avec aptitude et utilisez
+Gem pour installer le moteur de coloration syntaxique:</p>
+
+<blockquote><h1>aptitude install libonig-dev # gem install ultraviolet</h1></blockquote>
+
+<p>Rendez-vous ensuite sur
+<a href="http://github.com/epitron/redmine_ultraviolet">Github</a> pour récupérer la
+dernière version et placer le plugin dans le dossier vendor/plugins de votre
+Redmine.</p>
+
+<p>Placez vous ensuite dans le dossier contenant votre installation de Redmine et
+lancez un petit coup de rake sur vos plugins:</p>
+
+<h1>rake db:migrate_plugins RAILS_ENV=production</h1>
+
+<p>et enfin relancer votre instance de Redmine ou directement votre serveur Rails
+(Mongrel, ou Apache si vous utilisez passenger)</p>
+
+<p>Voilà le résultat sur le même fichier:</p>
+
+<p><img src="http://media.tumblr.com/tumblr_lhnyn34nUK1qgcouj.png" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Redmine: Quelques plugins]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/02/08/redmine-quelques-plugins/"/>
+    <updated>2010-02-08T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/02/08/redmine-quelques-plugins</id>
+    <content type="html"><![CDATA[<p>Comme dit lors de l&#8217;un de mes derniers articles, Redmine est un outil de
+gestion de projet puissant, libre et de par son écriture en Ruby, massivement
+extensible par divers plugins!</p>
+
+<p>Voici donc ici les quelques plugins que j&#8217;ai pu repérer et tester, liste
+biensur non exhaustive!</p>
+
+<p>Tout d&#8217;abord commençons par fédérer un peu la communauté qui contribue à votre
+projet par des fonctions un peu plus sociales afin que ces derniers soient le
+plus au courant possible de l&#8217;état du projet.</p>
+
+<p>Commençons donc par un petit plugin de blog qui permettra à vos utilisateurs
+de poster des annonces, des informations ou encore des réflexions de manière
+centrale et interne. Ce plugin reste cependant limité quand a une éventuelle
+utilisation pour une façade d&#8217;annonce  publique.</p>
+
+<p><a href="http%0A://www.redmine.org/attachments/1980/redmine_blogs_main.png"><img src="http://www.redmine.org/attachments/1980/redmine_blogs_main.png" alt="Blog" /></a></p>
+
+<p>(<a href="http://www.redmine.org/boards/3/topics/5782">[http://www.redmine.org/boards/3/topics/5782](http://www.redmine.org/boards/
+3/topics/5782)</a>)</p>
+
+<p>Viens ensuite une copie du réseau social le plus en vogue en ce moment, j&#8217;ai
+nommé Twitter! Grâce au plugin &ldquo;status update&rdquo; vous pourrez mettre en place un
+moyen rapide de communiquer entre vos collaborateurs afin qu&#8217;il puissent dire
+simplement ce qu&#8217;ils sont en train de faire. Ce plugin aurait cependant peut-
+être besoin d&#8217;une fonction de &ldquo;reply&rdquo; et/ou &ldquo;repost&rdquo; pour pouvoir réellement
+s&#8217;apparenter à Twitter.</p>
+
+<p><a href="http://www.redmine.org/attachments/698/Screenshot-%0AeCookbook_-_Redmine_-_Mozilla_Firefox.png"><img src="http://www.redmine.org/attachments/698/Screenshot-%0AeCookbook_-_Redmine_-%0A_Mozilla_Firefox.png" alt="Status update" /></a></p>
+
+<p>(<a href="http://www.redmine.org/boards/1/topics/1483">[http://www.redmine.org/boards/1/topics/1483](http://www.redmine.org/boards/
+1/topics/1483)</a>)</p>
+
+<p>Passons maintenant à un plugin plus élémentaire voir quasiment indispensable:
+la gestion des fameuses &ldquo;todo list&rdquo;. Grâce à ce plugin vous pourrez
+centraliser la gestion de ces dernières directement dans un nouvel onglet du
+projet et ainsi éviter à vos contributeurs de passer par un quelconque service
+web complémentaire ou encore par l&#8217;éternel post-it. Cette fois rien à redire,
+les idées sont centralisées sur notre plateforme interne ce qui est en plus un
+gage de sécurité!  (<a href="http://www.redmine.org/boards/3/topics/4070">[http://www.redmine.org/boards/3/topics/4070](http://www.
+redmine.org/boards/3/topics/4070)</a>)</p>
+
+<p>Et si beaucoup de personnes interviennent sur votre projet? Comment gérer les
+interrogations des nouveaux venu? Par défaut, beaucoup serait tenté de tout
+centraliser sur une doc disponible sur le wiki du projet. C&#8217;est une bonne
+pratique mais mal géré, cela peut vite tourner au bazar le plus complet.
+L&#8217;idée du plugin &ldquo;question&rdquo; est de pouvoir gérer vos demandes et votre support
+en interne (par exemple les demandes formulées par de nouveaux développeurs ou
+par un utilisateur final). De plus, ce plugin permet d&#8217;effectuer des
+recherches multi-critères sur les questions qui ont déjà été pausés, pourquoi
+pas réorienter la documentation en fonction des questions les plus récurantes?</p>
+
+<p><a href="h%0Attp://www.redmine.org/attachments/1535/question_on_issue.png"><img src="http://www.redmine.org/attachments/1535/question_on_issue.png" alt="Question" /></a></p>
+
+<p>(<a href="http://www.redmine.org/wiki/redmine/PluginQuesti%0Aon">[http://www.redmine.org/wiki/redmine/PluginQuestion](http://www.redmine.org/
+wiki/redmine/PluginQuestion)</a>)</p>
+
+<p>Besoin de mieux évaluer les coûts de votre projet? Attention, le plugin
+&ldquo;budget&rdquo; dépend d&#8217;un projet bien rodé afin d&#8217;être réellement efficace. Vous
+pourrez ainsi prévoir le coût du projet en fonction du temps passé. Cela
+implique également l&#8217;utilisation de la &ldquo;badgeuse&rdquo; intégrée au Redmine par vos
+développeurs et autres contributeurs afin qu&#8217;il puisse faire état du temps
+passé sur les différentes taches du projet.</p>
+
+<p><a href="http://www.redmine.org/attachments/download/924%0A/budget_plugin-budget_screen.png"><img src="http://www.redmine.org/attachments/download/924/budget_plugin-%0Abudget_screen.png" alt="Budget" /></a></p>
+
+<p>(<a href="http://www.redmine.org/wiki/redmine/PluginBudget">[http://www.redmine.org/wiki/redmine/PluginBudget](http://www.redmine.org/wi
+ki/redmine/PluginBudget)</a>)</p>
+
+<p>Enfin, je terminerai avec un plugin relativement évolué. Avis aux amateurs de
+gestions de projets Agile, ce plugin vous permettra d&#8217;intégrer les méthodes de
+gestion <a href="http://fr.wikipedia.org/wiki/Scrum">Scrum</a> à votre projet sous la
+forme d&#8217;un dashboard complet:</p>
+
+<p><a href="http://www.redmine.org/attachments/1986/scrumdashboard_1.png"><img src="http://www.redmine.org/attachments/1986/scrumdashboard_1.p%0Ang" alt="Scrum Dashboard" /></a></p>
+
+<p>(<a href="http://www.redmine.org/boards/3/topics/5808">[http://www.redmine.org/boards/3/topics/5808](http://www.redmine.org/boards/
+3/topics/5808)</a>)</p>
+
+<p>Je ne détaillerai pas ici l&#8217;installation de ces plugins et vous invite pour
+cela à vous rendre sur la page officiel du wiki de Redmine: <a href="htt%0Ap://www.redmine.org/wiki/redmine/Plugins">[http://www.redmi
+ne.org/wiki/redmine/Plugins](http://www.redmine.org/wiki/redmine/Plugins)</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Disque de sauvegarde en réseau et compatibilité Mac]]></title>
+    <link href="http://blog.lelevier.com/blog/2010/02/02/disque-de-sauvegarde-en-rseau-et-compatibilit-mac/"/>
+    <updated>2010-02-02T00:00:00+01:00</updated>
+    <id>http://blog.lelevier.com/blog/2010/02/02/disque-de-sauvegarde-en-rseau-et-compatibilit-mac</id>
+    <content type="html"><![CDATA[<p>Voilà quelques mois que je cherchais un petit nas réseau qui prendrai en
+charge l&#8217;AFP et me permettrai de faire mes sauvegardes via le réseau pour ne
+pas avoir à brancher de disque USB tous les 4 matins.</p>
+
+<p>J&#8217;avais bien un petit <a href="http://www.linksysbycisco.com/EU/fr/products/NSLU2">Linksys
+NSLU2</a> flashé sous Debian
+en rab mais cela m&#8217;obligeais à ajouter des disques USB 2.0, donc double
+d&#8217;alimentation, place, qui plus ai la bête à tendance à siffler, et le tout
+avec des performances (la machine n&#8217;a qu&#8217;un ARM bridé à 133mhz avec 32mo de
+mémoire), j&#8217;ai vite laissé tombé l&#8217;idée.</p>
+
+<p>En surveillant un peux les modèles disponibles je suis alors tombé sur le
+<a href="http://www.netgear.com/Products/Storage/Stora/MS2110.aspx">Netgear Stora
+MS2110</a>, petit
+frère du Readynas avec une orientation plus &ldquo;grand public&rdquo;, le tout pour moins
+de 200€ disque compris, accès en AFP, certifié TimeMachine, et finalement très
+décevant…</p>
+
+<p>Malgré sa certification TimeMachine, le Netgear offre un utilisation
+&ldquo;multiple&rdquo; et permet de stocker de la musique, des photos, des vidéos, des
+documents… De ce fait l&#8217;espace de sauvegarde, non actif de base et accessible
+seulement en SMB, est bridé par un quota de 200go, et cette limite est sans
+appel… Impossible donc de l&#8217;utiliser pour sauvegarder toutes mes machines sur
+200go! mon macbook à lui seul avec son disque de 250go dépassait déjà lors de
+la sauvegarde initiale…</p>
+
+<p>Me voilà donc avec un disque à 200€ acheté pour un besoin auquel il ne répond
+pas… et heureusement, je l&#8217;avais prix chez <a href="http://materiel.net">materiel.net</a>
+qui encore une fois m&#8217;a prouvé son sérieux et sa qualité! Contact direct avec
+Netgear de leur part, réponse sous 48h, les techniciens de Netgear n&#8217;ont pour
+l&#8217;instant pas prévu la modification, et pour gagner du temps Materiel.net à
+choisit de me reprendre le produit en question afin de ne pas bloquer mon
+problème de sauvegarde. J&#8217;ai donc retourné le Netgear à son envoyeur qui m&#8217;a
+alors fait un avoir (pas fou!), frais de retour compris. Comme d&#8217;habitude,
+<a href="http://materiel.net">Materiel.net</a>, j&#8217;en suis content et je le recommande!</p>
+
+<p>Bref revenons a nous moutons, après avoir hésité sur quelques modèles de chez
+Synology, je me suis dis que cela m&#8217;aurai fait une sauvegarde finalement assez
+éloignée de ma machine à sauvegarder: macbook &ndash;> neufbox (54mbits) &ndash;> switch
+(100mb) &ndash;> nas (1gbits) et enfin les accès disques.</p>
+
+<p>J&#8217;ai donc craquer et encore une fois j&#8217;ai acheté chez Apple. Une petite
+TimeCapsule viens de rejoindre mon réseau, remplaçant ainsi le switch gigabyte
+et le wifi fourni par la neufbox, je sais que mon espace de sauvegarde se
+trouve juste derrière la borne et que le produit est prévu pour, bref aucun
+problème tout fonctionne!</p>
+
+<p>Note à mois même, ne plus essayer de bidouiller un système alternatif pour
+économiser 60€, ça marchera toujours moins bien…</p>
+]]></content>
+  </entry>
+  
+</feed>

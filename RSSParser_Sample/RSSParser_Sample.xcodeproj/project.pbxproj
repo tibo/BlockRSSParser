@@ -15,6 +15,13 @@
 		110A8A9814E9A30C0013AC07 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 110A8A9714E9A30C0013AC07 /* AppDelegate.m */; };
 		1133748C169ACED1003E2CE9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1133748B169ACED1003E2CE9 /* Default-568h@2x.png */; };
 		1134EC18153D75400041D594 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1134EC17153D75400041D594 /* placeholder.png */; };
+		113DA6A718452BF5005700B7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113DA6A618452BF5005700B7 /* XCTest.framework */; };
+		113DA6A818452BF5005700B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110A8A8914E9A30C0013AC07 /* Foundation.framework */; };
+		113DA6A918452BF5005700B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110A8A8714E9A30C0013AC07 /* UIKit.framework */; };
+		113DA6AF18452BF5005700B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 113DA6AD18452BF5005700B7 /* InfoPlist.strings */; };
+		113DA6B91845F7A5005700B7 /* RSSParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 113DA6B81845F7A5005700B7 /* RSSParserTests.m */; };
+		113DA6BC1845F91E005700B7 /* atom.xml in Resources */ = {isa = PBXBuildFile; fileRef = 113DA6BB1845F91E005700B7 /* atom.xml */; };
+		113DA6C0184605BE005700B7 /* rsswordpress.xml in Resources */ = {isa = PBXBuildFile; fileRef = 113DA6BF184605BE005700B7 /* rsswordpress.xml */; };
 		118543C614E9AC20001761CB /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543C314E9AC20001761CB /* RSSItem.m */; };
 		118543C714E9AC20001761CB /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543C514E9AC20001761CB /* RSSParser.m */; };
 		118543EF14E9ACD2001761CB /* ArticlesListeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543ED14E9ACD2001761CB /* ArticlesListeTableViewController.m */; };
@@ -22,9 +29,20 @@
 		118543F414E9AFE0001761CB /* ArticleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 118543F214E9AFE0001761CB /* ArticleDetailViewController.m */; };
 		118543F514E9AFE0001761CB /* ArticleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 118543F314E9AFE0001761CB /* ArticleDetailViewController.xib */; };
 		38D21F55D00F4BA7A4D6010A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2491A17B4E26435E940E1404 /* libPods.a */; };
+		C6E456351B014048A1E4434B /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5D50FCF4044DC3865DCB53 /* libPods-Tests.a */; };
 		DA0619AD16A3127300DB4BB8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */; };
 		DA0619AF16A312E200DB4BB8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		113DA6B318452BF5005700B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 110A8A7A14E9A30A0013AC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 110A8A8214E9A30B0013AC07;
+			remoteInfo = RSSParser_Sample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		073191F44E634D718281FECB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -43,6 +61,14 @@
 		11337490169ACF5F003E2CE9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		11337496169AD3AF003E2CE9 /* BlockRSSParser.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = BlockRSSParser.podspec; path = ../BlockRSSParser.podspec; sourceTree = "<group>"; };
 		1134EC17153D75400041D594 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		113DA6A518452BF5005700B7 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		113DA6A618452BF5005700B7 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		113DA6AC18452BF5005700B7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		113DA6AE18452BF5005700B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		113DA6B218452BF5005700B7 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		113DA6B81845F7A5005700B7 /* RSSParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParserTests.m; sourceTree = "<group>"; };
+		113DA6BB1845F91E005700B7 /* atom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = atom.xml; sourceTree = "<group>"; };
+		113DA6BF184605BE005700B7 /* rsswordpress.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rsswordpress.xml; sourceTree = "<group>"; };
 		118543C214E9AC20001761CB /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItem.h; sourceTree = "<group>"; };
 		118543C314E9AC20001761CB /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
 		118543C414E9AC20001761CB /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
@@ -54,6 +80,8 @@
 		118543F214E9AFE0001761CB /* ArticleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailViewController.m; sourceTree = "<group>"; };
 		118543F314E9AFE0001761CB /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleDetailViewController.xib; sourceTree = "<group>"; };
 		2491A17B4E26435E940E1404 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A5D50FCF4044DC3865DCB53 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
 		DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -72,6 +100,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		113DA6A218452BF4005700B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				113DA6A718452BF5005700B7 /* XCTest.framework in Frameworks */,
+				113DA6A918452BF5005700B7 /* UIKit.framework in Frameworks */,
+				113DA6A818452BF5005700B7 /* Foundation.framework in Frameworks */,
+				C6E456351B014048A1E4434B /* libPods-Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,9 +124,11 @@
 				11337490169ACF5F003E2CE9 /* LICENSE */,
 				118543C114E9AC20001761CB /* RSSParser */,
 				110A8A8D14E9A30C0013AC07 /* RSSParser_Sample */,
+				113DA6AA18452BF5005700B7 /* Tests */,
 				110A8A8614E9A30C0013AC07 /* Frameworks */,
 				110A8A8414E9A30C0013AC07 /* Products */,
 				073191F44E634D718281FECB /* Pods.xcconfig */,
+				CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				110A8A8314E9A30C0013AC07 /* RSSParser_Sample.app */,
+				113DA6A518452BF5005700B7 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +148,8 @@
 				110A8A8914E9A30C0013AC07 /* Foundation.framework */,
 				110A8A8B14E9A30C0013AC07 /* CoreGraphics.framework */,
 				2491A17B4E26435E940E1404 /* libPods.a */,
+				113DA6A618452BF5005700B7 /* XCTest.framework */,
+				4A5D50FCF4044DC3865DCB53 /* libPods-Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,6 +181,35 @@
 				110A8A9514E9A30C0013AC07 /* RSSParser_Sample-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		113DA6AA18452BF5005700B7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				113DA6BA1845F907005700B7 /* Mocks */,
+				113DA6AB18452BF5005700B7 /* Supporting Files */,
+				113DA6B81845F7A5005700B7 /* RSSParserTests.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		113DA6AB18452BF5005700B7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				113DA6AC18452BF5005700B7 /* Tests-Info.plist */,
+				113DA6AD18452BF5005700B7 /* InfoPlist.strings */,
+				113DA6B218452BF5005700B7 /* Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		113DA6BA1845F907005700B7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				113DA6BF184605BE005700B7 /* rsswordpress.xml */,
+				113DA6BB1845F91E005700B7 /* atom.xml */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		118543C114E9AC20001761CB /* RSSParser */ = {
@@ -173,6 +246,26 @@
 			productReference = 110A8A8314E9A30C0013AC07 /* RSSParser_Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		113DA6A418452BF4005700B7 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 113DA6B718452BF5005700B7 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				9B69B36826794FA0AC47656A /* Check Pods Manifest.lock */,
+				113DA6A118452BF4005700B7 /* Sources */,
+				113DA6A218452BF4005700B7 /* Frameworks */,
+				113DA6A318452BF4005700B7 /* Resources */,
+				9A74086EDA07470C9E625107 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				113DA6B418452BF5005700B7 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 113DA6A518452BF5005700B7 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -180,6 +273,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					113DA6A418452BF4005700B7 = {
+						TestTargetID = 110A8A8214E9A30B0013AC07;
+					};
+				};
 			};
 			buildConfigurationList = 110A8A7D14E9A30A0013AC07 /* Build configuration list for PBXProject "RSSParser_Sample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -194,6 +292,7 @@
 			projectRoot = "";
 			targets = (
 				110A8A8214E9A30B0013AC07 /* RSSParser_Sample */,
+				113DA6A418452BF4005700B7 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -211,10 +310,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		113DA6A318452BF4005700B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				113DA6C0184605BE005700B7 /* rsswordpress.xml in Resources */,
+				113DA6BC1845F91E005700B7 /* atom.xml in Resources */,
+				113DA6AF18452BF5005700B7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		02B885538FC4497EB3396399 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9A74086EDA07470C9E625107 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B69B36826794FA0AC47656A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,13 +399,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		113DA6A118452BF4005700B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				113DA6B91845F7A5005700B7 /* RSSParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		113DA6B418452BF5005700B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 110A8A8214E9A30B0013AC07 /* RSSParser_Sample */;
+			targetProxy = 113DA6B318452BF5005700B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		110A8A9014E9A30C0013AC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				110A8A9114E9A30C0013AC07 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		113DA6AD18452BF5005700B7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				113DA6AE18452BF5005700B7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -345,6 +508,86 @@
 			};
 			name = Release;
 		};
+		113DA6B518452BF5005700B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSParser_Sample.app/RSSParser_Sample";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		113DA6B618452BF5005700B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSParser_Sample.app/RSSParser_Sample";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -362,6 +605,15 @@
 			buildConfigurations = (
 				110A8A9C14E9A30C0013AC07 /* Debug */,
 				110A8A9D14E9A30C0013AC07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		113DA6B718452BF5005700B7 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				113DA6B518452BF5005700B7 /* Debug */,
+				113DA6B618452BF5005700B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

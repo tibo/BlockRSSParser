@@ -48,6 +48,7 @@
     operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        failblock = [failure copy];
         [(NSXMLParser *)responseObject setDelegate:self];
         [(NSXMLParser *)responseObject parse];
     }
@@ -138,6 +139,12 @@
 {
     [tmpString appendString:string];
     
+}
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    failblock(parseError);
+    [parser abortParsing];
 }
 
 #pragma mark -
