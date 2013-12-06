@@ -1,3 +1,5 @@
+# Block RSS Parser [![Build Status](https://travis-ci.org/tiboll/BlockRSSParser.png?branch=master)](https://travis-ci.org/tiboll/BlockRSSParser)
+
 This is a simple <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> and block based RSS parser.
 
 Block RSS Parser is now compatible with AFNetworking 2.x.
@@ -13,13 +15,13 @@ Please use the 1.1 version (Podspec and git tag)
 
 ## Get started
 
-Use Cocoapods! just add this line to you Podfile: 
+Use CocoaPods! Just add this line to you Podfile: 
 
 ```
 pod 'BlockRSSParser', '~> 2.1'
 ```
 
-If you don't want to use Cocoapods, follow theses instructions for a manual install :
+If you don't want to use CocoaPods, follow theses instructions for a manual install :
 
 1. Drag and drop the 4 files related to the parser:
 
@@ -75,7 +77,15 @@ note: take a look at the "RSS Standards" part
 ## Using the sample project
 
 The sample project is here to provide you a quick way to see how to get started.
-Dont forget to run "git submodules init" to fetch AFNetworking in the externals libraries
+You can use CocoaPods to download the dependencies. Go to the sample project folder and run:
+
+```shell
+pod install
+```
+and
+```shell
+open RSSParser_Sample.xcworkspace
+```
 
 ## RSS Standards
 
@@ -84,12 +94,6 @@ RSS is one of the worst protocol in the world. There is many standard to describ
 This parser is optimised to work with a Wordpress feed and some informations like the content or the comments informations will not be present with some other providers.
 
 The sample code use a Tumblr feed provided for my personal blog. The content is empty but the full body of the article is present in the itemDescription (description in the feed) of the feed.
-
-This parser is mostly optimised to use with a wordpress feed.
-
-## Continuous integration
-
-[![Build Status](https://travis-ci.org/tiboll/BlockRSSParser.png?branch=master)](https://travis-ci.org/tiboll/BlockRSSParser)
 
 ## TODO
 
