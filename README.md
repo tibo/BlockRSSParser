@@ -1,4 +1,4 @@
-# Block RSS Parser [![Build Status](https://travis-ci.org/tiboll/BlockRSSParser.png?branch=master)](https://travis-ci.org/tiboll/BlockRSSParser)
+# Block RSS Parser [![Build Status](https://travis-ci.org/tibo/BlockRSSParser.png?branch=master)](https://travis-ci.org/tibo/BlockRSSParser)
 
 This is a simple <a href="https://github.com/AFNetworking/AFNetworking/">AFNetworking</a> and block based RSS parser.
 
