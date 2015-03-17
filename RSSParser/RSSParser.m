@@ -78,6 +78,7 @@
 {    
     if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         [items addObject:currentItem];
+        currentItem = nil;
     }
     if (currentItem != nil && tmpString != nil) {
         
