@@ -13,6 +13,7 @@
     RSSItem *currentItem;
     NSMutableArray *items;
     NSMutableString *tmpString;
+    NSDictionary *tmpAttrDict;
     void (^block)(NSArray *feedItems);
     void (^failblock)(NSError *error);
 }

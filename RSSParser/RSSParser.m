@@ -80,6 +80,7 @@
     }
     
     tmpString = [[NSMutableString alloc] init];
+    tmpAttrDict = attributeDict;
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -108,6 +109,14 @@
             [currentItem setAuthor:tmpString];
         } else if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
+        }
+        
+        // sometimes the URL is inside enclosure element, not in link. Reference: http://www.w3schools.com/rss/rss_tag_enclosure.asp
+        if ([elementName isEqualToString:@"enclosure"] && tmpAttrDict != nil) {
+            NSString *url = [tmpAttrDict objectForKey:@"url"];
+            if(url) {
+                [currentItem setLink:[NSURL URLWithString:url]];
+            }
         }
     }
     
