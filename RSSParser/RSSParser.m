@@ -11,6 +11,12 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFURLResponseSerialization.h"
 
+@interface RSSParser()
+
+@property (nonatomic) NSDateFormatter *formatter;
+
+@end
+
 @implementation RSSParser
 
 #pragma mark lifecycle
@@ -18,6 +24,10 @@
     self = [super init];
     if (self) {
         items = [[NSMutableArray alloc] init];
+        
+        _formatter = [[NSDateFormatter alloc] init];
+        [_formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"]];
+        [_formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
     }
     return self;
 }
@@ -36,8 +46,8 @@
 
 
 - (void)parseRSSFeedForRequest:(NSURLRequest *)urlRequest
-                                          success:(void (^)(NSArray *feedItems))success
-                                          failure:(void (^)(NSError *error))failure
+                       success:(void (^)(NSArray *feedItems))success
+                       failure:(void (^)(NSError *error))failure
 {
     
     block = [success copy];
@@ -63,19 +73,16 @@
 #pragma mark -
 #pragma mark NSXMLParser delegate
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
-{
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
     
     if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         currentItem = [[RSSItem alloc] init];
     }
     
     tmpString = [[NSMutableString alloc] init];
-    
 }
 
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{    
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         [items addObject:currentItem];
     }
@@ -83,48 +90,23 @@
         
         if ([elementName isEqualToString:@"title"]) {
             [currentItem setTitle:tmpString];
-        }
-        
-        if ([elementName isEqualToString:@"description"]) {
+        } else if ([elementName isEqualToString:@"description"]) {
             [currentItem setItemDescription:tmpString];
-        }
-        
-        if ([elementName isEqualToString:@"content:encoded"] || [elementName isEqualToString:@"content"]) {
+        } else if ([elementName isEqualToString:@"content:encoded"] || [elementName isEqualToString:@"content"]) {
             [currentItem setContent:tmpString];
-        }
-        
-        if ([elementName isEqualToString:@"link"]) {
+        } else if ([elementName isEqualToString:@"link"]) {
             [currentItem setLink:[NSURL URLWithString:tmpString]];
-        }
-        
-        if ([elementName isEqualToString:@"comments"]) {
+        } else if ([elementName isEqualToString:@"comments"]) {
             [currentItem setCommentsLink:[NSURL URLWithString:tmpString]];
-        }
-        
-        if ([elementName isEqualToString:@"wfw:commentRss"]) {
+        } else if ([elementName isEqualToString:@"wfw:commentRss"]) {
             [currentItem setCommentsFeed:[NSURL URLWithString:tmpString]];
-        }
-        
-        if ([elementName isEqualToString:@"slash:comments"]) {
+        } else if ([elementName isEqualToString:@"slash:comments"]) {
             [currentItem setCommentsCount:[NSNumber numberWithInt:[tmpString intValue]]];
-        }
-        
-        if ([elementName isEqualToString:@"pubDate"]) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-
-            NSLocale *local = [[NSLocale alloc] initWithLocaleIdentifier:@"en_EN"];
-            [formatter setLocale:local];
-          
-            [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
-            
-            [currentItem setPubDate:[formatter dateFromString:tmpString]];
-        }
-
-        if ([elementName isEqualToString:@"dc:creator"]) {
+        } else if ([elementName isEqualToString:@"pubDate"]) {
+            [currentItem setPubDate:[_formatter dateFromString:tmpString]];
+        } else if ([elementName isEqualToString:@"dc:creator"]) {
             [currentItem setAuthor:tmpString];
-        }
-        
-        if ([elementName isEqualToString:@"guid"]) {
+        } else if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
         }
     }
@@ -132,17 +114,13 @@
     if ([elementName isEqualToString:@"rss"] || [elementName isEqualToString:@"feed"]) {
         block(items);
     }
-    
 }
 
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     [tmpString appendString:string];
-    
 }
 
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
     failblock(parseError);
     [parser abortParsing];
 }
