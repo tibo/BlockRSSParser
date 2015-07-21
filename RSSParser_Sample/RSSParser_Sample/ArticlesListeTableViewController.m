@@ -50,7 +50,7 @@
     
     [self setTitle:@"Loading..."];
     
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.lelevier.fr/rss"]];
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.lelevier.com/feed.xml"]];
     [RSSParser parseRSSFeedForRequest:req success:^(NSArray *feedItems) {
         [self setTitle:@"Blog"];
         [self setDataSource:feedItems];
