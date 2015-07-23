@@ -86,6 +86,7 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     if ([elementName isEqualToString:@"item"] || [elementName isEqualToString:@"entry"]) {
         [items addObject:currentItem];
+        currentItem = nil;
     }
     if (currentItem != nil && tmpString != nil) {
         
