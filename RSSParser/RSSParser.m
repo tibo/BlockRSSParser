@@ -117,6 +117,8 @@
                 if (url) {
                     [currentItem setThumbnail:[NSURL URLWithString:url]];
                 }
+            } else if ([elementName isEqualToString:@"media:content"]) {
+                [currentItem setMediaContent:tmpAttrDict];
             // sometimes the URL is inside enclosure element, not in link. Reference: http://www.w3schools.com/rss/rss_tag_enclosure.asp
             } else if ([elementName isEqualToString:@"enclosure"] ) {
                 NSString *url = [tmpAttrDict objectForKey:@"url"];

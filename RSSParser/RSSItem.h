@@ -21,6 +21,7 @@
 @property (strong,nonatomic) NSString *author;
 @property (strong,nonatomic) NSString *guid;
 @property (strong,nonatomic) NSURL *thumbnail;
+@property (strong,nonatomic) NSDictionary *mediaContent;
 
 -(NSArray *)imagesFromItemDescription;
 -(NSArray *)imagesFromContent;

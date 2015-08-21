@@ -16,6 +16,12 @@
 
 @implementation RSSItem
 
+typedef enum {
+    video,
+    audio,
+    unknown
+} contentType;
+
 -(NSArray *)imagesFromItemDescription
 {
     if (self.itemDescription) {
@@ -32,6 +38,24 @@
     }
     
     return nil;
+}
+
+-(contentType)getMediaType
+{
+    if (self.mediaContent) {
+        if (([[self.mediaContent objectForKey:@"type"] rangeOfString:@"video"].location != NSNotFound) ||
+            ([[self.mediaContent objectForKey:@"medium"] caseInsensitiveCompare:@"video"] == NSOrderedSame))
+        {
+            return video;
+        }
+        else if (([[self.mediaContent objectForKey:@"type"] rangeOfString:@"audio"].location != NSNotFound) ||
+                 ([[self.mediaContent objectForKey:@"medium"] caseInsensitiveCompare:@"audio"] == NSOrderedSame))
+        {
+            return audio;
+        }
+    }
+
+    return unknown;
 }
 
 #pragma mark - retrieve images from html string using regexp (private methode)
