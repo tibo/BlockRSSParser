@@ -16,12 +16,6 @@
 
 @implementation RSSItem
 
-typedef enum {
-    video,
-    audio,
-    unknown
-} contentType;
-
 -(NSArray *)imagesFromItemDescription
 {
     if (self.itemDescription) {
