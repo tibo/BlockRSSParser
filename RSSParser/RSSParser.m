@@ -110,12 +110,19 @@
         } else if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
         }
-        
-        // sometimes the URL is inside enclosure element, not in link. Reference: http://www.w3schools.com/rss/rss_tag_enclosure.asp
-        if ([elementName isEqualToString:@"enclosure"] && tmpAttrDict != nil) {
-            NSString *url = [tmpAttrDict objectForKey:@"url"];
-            if(url) {
-                [currentItem setLink:[NSURL URLWithString:url]];
+
+        if (tmpAttrDict != nil) {
+            if ([elementName isEqualToString:@"media:thumbnail"]) {
+                NSString *url = [tmpAttrDict objectForKey:@"url"];
+                if (url) {
+                    [currentItem setThumbnail:[NSURL URLWithString:url]];
+                }
+            // sometimes the URL is inside enclosure element, not in link. Reference: http://www.w3schools.com/rss/rss_tag_enclosure.asp
+            } else if ([elementName isEqualToString:@"enclosure"] ) {
+                NSString *url = [tmpAttrDict objectForKey:@"url"];
+                if(url) {
+                    [currentItem setLink:[NSURL URLWithString:url]];
+                }
             }
         }
     }
