@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "Thibaut LE LEVIER" => "thibaut@lelevier.fr" }
 
-  s.source       = { :git => "https://github.com/MichiganLabs/BlockRSSParser.git", :commit => "bcb34b2d8a456aabbe844fb9a9a9402d6ae5d7d2" }
+  s.source       = { :git => "https://github.com/MichiganLabs/BlockRSSParser.git", :branch => "master" }
 
   s.requires_arc = true
 
