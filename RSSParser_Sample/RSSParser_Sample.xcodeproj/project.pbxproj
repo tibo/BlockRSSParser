@@ -45,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		073191F44E634D718281FECB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		110A8A8314E9A30C0013AC07 /* RSSParser_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSParser_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		110A8A8714E9A30C0013AC07 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		110A8A8914E9A30C0013AC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,7 +80,10 @@
 		118543F314E9AFE0001761CB /* ArticleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleDetailViewController.xib; sourceTree = "<group>"; };
 		2491A17B4E26435E940E1404 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A5D50FCF4044DC3865DCB53 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
+		876783A82877C73770581618 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		91621EAD797C68731151839F /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A26502ECE3DBCDF160B2E1DC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C9AA89FCEC971A506342042C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA0619AC16A3127300DB4BB8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DA0619AE16A312E200DB4BB8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -127,8 +129,7 @@
 				113DA6AA18452BF5005700B7 /* Tests */,
 				110A8A8614E9A30C0013AC07 /* Frameworks */,
 				110A8A8414E9A30C0013AC07 /* Products */,
-				073191F44E634D718281FECB /* Pods.xcconfig */,
-				CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */,
+				F5F6E4C8F822BBA6689AA215 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +223,17 @@
 			);
 			name = RSSParser;
 			path = ../RSSParser;
+			sourceTree = "<group>";
+		};
+		F5F6E4C8F822BBA6689AA215 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A26502ECE3DBCDF160B2E1DC /* Pods.debug.xcconfig */,
+				C9AA89FCEC971A506342042C /* Pods.release.xcconfig */,
+				876783A82877C73770581618 /* Pods-Tests.debug.xcconfig */,
+				91621EAD797C68731151839F /* Pods-Tests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +362,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B69B36826794FA0AC47656A /* Check Pods Manifest.lock */ = {
@@ -380,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -484,7 +496,7 @@
 		};
 		110A8A9C14E9A30C0013AC07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 073191F44E634D718281FECB /* Pods.xcconfig */;
+			baseConfigurationReference = A26502ECE3DBCDF160B2E1DC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSParser_Sample/RSSParser_Sample-Prefix.pch";
@@ -497,7 +509,7 @@
 		};
 		110A8A9D14E9A30C0013AC07 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 073191F44E634D718281FECB /* Pods.xcconfig */;
+			baseConfigurationReference = C9AA89FCEC971A506342042C /* Pods.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSParser_Sample/RSSParser_Sample-Prefix.pch";
@@ -510,7 +522,7 @@
 		};
 		113DA6B518452BF5005700B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */;
+			baseConfigurationReference = 876783A82877C73770581618 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSParser_Sample.app/RSSParser_Sample";
@@ -552,7 +564,7 @@
 		};
 		113DA6B618452BF5005700B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB8EEF26B88147498AFADEE2 /* Pods-Tests.xcconfig */;
+			baseConfigurationReference = 91621EAD797C68731151839F /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSParser_Sample.app/RSSParser_Sample";

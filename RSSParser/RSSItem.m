@@ -34,6 +34,30 @@
     return nil;
 }
 
+-(contentType)getMediaType
+{
+    if (self.mediaContent) {
+        if ([self dictionary:self.mediaContent containsString:@"video" fromKeys:@[@"type", @"medium"]]) {
+            return video;
+        }
+        else if ([self dictionary:self.mediaContent containsString:@"audio" fromKeys:@[@"type", @"medium"]]) {
+            return audio;
+        }
+    }
+
+    return unknown;
+}
+
+-(BOOL)dictionary:(NSDictionary *)dictionary containsString:(NSString *)string fromKeys:(NSArray *)keys
+{
+    for (id key in keys) {
+        if ([[dictionary objectForKey:key] rangeOfString:string options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #pragma mark - retrieve images from html string using regexp (private methode)
 
 -(NSArray *)imagesFromHTMLString:(NSString *)htmlstr

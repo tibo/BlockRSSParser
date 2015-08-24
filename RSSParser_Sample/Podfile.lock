@@ -1,34 +1,37 @@
 PODS:
-  - AFNetworking (2.0.3):
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.0.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.0.3):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.0.3)
-  - AFNetworking/Security (2.0.3)
-  - AFNetworking/Serialization (2.0.3)
-  - AFNetworking/UIKit (2.0.3):
-    - AFNetworking/NSURLConnection
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/XCTest (2.2.3):
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0.3)
+  - AFNetworking
   - Kiwi/XCTest
 
 SPEC CHECKSUMS:
-  AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Kiwi: 5d574f31ceac18ba417f5dac6c7f9f1a3e86962d
 
-COCOAPODS: 0.28.0
+COCOAPODS: 0.38.2

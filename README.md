@@ -68,6 +68,7 @@ With this parser you can get most of the informations provided by an RSS feed:
 @property (strong,nonatomic) NSDate *pubDate;
 @property (strong,nonatomic) NSString *author;
 @property (strong,nonatomic) NSString *guid;
+@property (strong,nonatomic) NSURL *thumbnail;   // from <media:thumbnail>
 
 -(NSArray *)imagesFromItemDescription;
 -(NSArray *)imagesFromContent;

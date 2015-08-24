@@ -10,6 +10,12 @@
 
 @interface RSSItem : NSObject <NSCoding>
 
+typedef enum {
+    video,
+    audio,
+    unknown
+} contentType;
+
 @property (strong,nonatomic) NSString *title;
 @property (strong,nonatomic) NSString *itemDescription;
 @property (strong,nonatomic) NSString *content;
@@ -20,8 +26,11 @@
 @property (strong,nonatomic) NSDate *pubDate;
 @property (strong,nonatomic) NSString *author;
 @property (strong,nonatomic) NSString *guid;
+@property (strong,nonatomic) NSURL *thumbnail;
+@property (strong,nonatomic) NSDictionary *mediaContent;
 
 -(NSArray *)imagesFromItemDescription;
 -(NSArray *)imagesFromContent;
+-(contentType)getMediaType;
 
 @end

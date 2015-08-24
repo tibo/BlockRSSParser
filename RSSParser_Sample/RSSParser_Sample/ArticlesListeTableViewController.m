@@ -50,7 +50,7 @@
     
     [self setTitle:@"Loading..."];
     
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.lelevier.com/feed.xml"]];
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://streamspot.com/rss/mrss?id=99957fbf"]];
     [RSSParser parseRSSFeedForRequest:req success:^(NSArray *feedItems) {
         [self setTitle:@"Blog"];
         [self setDataSource:feedItems];
@@ -123,8 +123,8 @@
     
     cell.textLabel.text = [item title];
     
-    if ([[item imagesFromItemDescription] count]>0) {
-        [cell.imageView setImageWithURL:[NSURL URLWithString:[item.imagesFromItemDescription objectAtIndex:0]] 
+    if ([item thumbnail]) {
+        [cell.imageView setImageWithURL:item.thumbnail
                        placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         
     }
