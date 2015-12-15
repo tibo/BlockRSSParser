@@ -115,7 +115,8 @@
                 mutableSet = [NSMutableSet set];
             }
 
-            [mutableSet addObject:tmpString];
+            NSString *string = [tmpString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            [mutableSet addObject:string];
             currentItem.categories = [mutableSet copy];
         }
         
