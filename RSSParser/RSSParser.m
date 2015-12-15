@@ -109,6 +109,15 @@
             [currentItem setAuthor:tmpString];
         } else if ([elementName isEqualToString:@"guid"]) {
             [currentItem setGuid:tmpString];
+        } else if ([elementName isEqualToString:@"category"]) {
+            NSMutableSet *mutableSet = [currentItem.categories mutableCopy];
+            if (!mutableSet) {
+                mutableSet = [NSMutableSet set];
+            }
+
+            NSString *string = [tmpString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            [mutableSet addObject:string];
+            currentItem.categories = [mutableSet copy];
         }
         
         // sometimes the URL is inside enclosure element, not in link. Reference: http://www.w3schools.com/rss/rss_tag_enclosure.asp
