@@ -7,8 +7,7 @@
 //
 
 #import "RSSParser.h"
-
-#import "AFHTTPRequestOperation.h"
+#import "AFHTTPSessionManager.h"
 #import "AFURLResponseSerialization.h"
 
 @interface RSSParser()
@@ -52,22 +51,21 @@
     
     block = [success copy];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
-    
-    operation.responseSerializer = [[AFXMLParserResponseSerializer alloc] init];
-    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        failblock = [failure copy];
-        [(NSXMLParser *)responseObject setDelegate:self];
-        [(NSXMLParser *)responseObject parse];
-    }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         failure(error);
-                                     }];
-    
-    [operation start];
-    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/xml", @"text/xml",@"application/rss+xml", @"application/atom+xml", nil];
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:urlRequest uploadProgress:nil downloadProgress:nil
+      completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+      if (error) {
+        if (failure) failure(error);
+      } else {
+        if (success) {
+          [(NSXMLParser *)responseObject setDelegate:self];
+          [(NSXMLParser *)responseObject parse];
+        }
+      }
+      }];
+    [task resume];
 }
 
 #pragma mark -
